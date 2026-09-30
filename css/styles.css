@@ -303,11 +303,21 @@ h1 .nowrap { white-space: nowrap; }
 .ministry p { font-size: 15px; line-height: 1.65; margin-top: 10px; max-width: 300px; margin-left: auto; margin-right: auto; }
 
 /* E-newsletter */
-.newsletter { padding: 72px 16px 80px; }
+.newsletter {
+  position: relative; overflow: hidden; isolation: isolate;   /* contenedor del parallax */
+  padding: 96px 16px 104px;
+  background: #0f3a66;                                        /* color mientras carga la imagen */
+}
+/* capa suave sobre la foto para que la tarjeta resalte */
+.newsletter::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(10, 40, 75, .25);
+}
 .newsletter__card {
-  position: relative; max-width: 1180px; margin: 0 auto; text-align: center;
+  position: relative; max-width: 900px; margin: 0 auto; text-align: center;
+  background: #fff;
   border: 1px solid var(--line); border-radius: 14px;
-  box-shadow: 0 4px 18px rgba(15,23,42,.06);
+  box-shadow: 0 18px 48px rgba(10, 30, 60, .28);
   padding: 64px 24px 44px;
 }
 .newsletter__icon {
