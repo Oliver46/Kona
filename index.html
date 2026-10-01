@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kona Seventh-day Adventist Church</title>
+<meta name="description" content="A Christ-centered church family in Kona, Hawaiʻi. Join us every Saturday: Sabbath School 9:30 am, Worship Service 10:45 am.">
+<link rel="preload" href="fonts/noto-serif/noto-serif-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/noto-sans/noto-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/hero/desktop/frame_001.webp" as="image" media="(min-width: 900px) and (hover: hover) and (pointer: fine)">
+<link rel="preload" href="img/hero/hero-portrait-poster.webp" as="image" media="(orientation: portrait)">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <div class="hero-scroll" id="hero-scroll">
 <section class="hero" id="hero">
-  <canvas class="hero__bg" aria-hidden="true"></canvas>
+  <!-- Escritorio: secuencia de imágenes con el scroll · Móvil y tableta: video en bucle (lo elige el JS) -->
+  <canvas class="hero__bg hero__canvas" aria-hidden="true"></canvas>
+  <video class="hero__bg hero__video" aria-hidden="true" muted loop playsinline preload="none"
+         data-portrait="img/hero/hero-portrait.mp4" data-landscape="img/hero/hero-landscape.mp4"></video>
   <div class="hero__overlay"></div>
-  <p class="hero__missing">Archivo pendiente: img/sequence/</p>
+  <p class="hero__missing">Archivo pendiente: img/hero/</p>
 
   <header class="nav">
-    <a href="#" class="brand"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church" width="1500" height="445"></a>
+    <a href="index.html" class="brand" aria-current="page"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445"></a>
     <ul class="nav__links">
-      <li><a href="index.html">HOME</a></li>
-      <li class="nav__item has-sub">
+      <li><a href="index.html" aria-current="page">HOME</a></li>
+      <li class="has-sub">
         <a href="about.html" aria-haspopup="true">ABOUT US <svg class="nav__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="submenu" aria-label="About Us">
           <li><a href="about.html">Who We Are</a></li>
@@ -27,7 +35,7 @@
       </li>
       <li><a href="our-beliefs.html">OUR BELIEF</a></li>
       <li><a href="calendar.html">CALENDAR</a></li>
-      <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
+      <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
     </ul>
     <a href="contact.html" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
     <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
@@ -40,7 +48,7 @@
     <p>Experience Jesus. Live Aloha. Find ‘Ohana.</p>
     <div class="actions reveal">
       <a href="#" class="btn btn--light">BULLETIN</a>
-      <a href="https://www.youtube.com/@konasdachurch" class="btn btn--glass" target="_blank">WATCH ON YOUTUBE</a>
+      <a href="https://www.youtube.com/@konasdachurch" class="btn btn--glass" target="_blank" rel="noopener">WATCH ON YOUTUBE</a>
     </div>
   </div>
 
@@ -211,7 +219,7 @@
     </button>
   </div>
   <ul class="menu__links">
-    <li><a href="#">HOME</a></li>
+    <li><a href="index.html" aria-current="page">HOME</a></li>
     <li class="menu__has-sub"><a href="about.html" data-submenu-toggle aria-expanded="false" aria-controls="menu-sub-about">ABOUT US <svg class="menu__caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
       <ul class="menu__sub" id="menu-sub-about">
         <li><a href="about.html">Who We Are</a></li>
@@ -220,7 +228,7 @@
     </li>
     <li><a href="our-beliefs.html">OUR BELIEF</a></li>
     <li><a href="calendar.html">CALENDAR</a></li>
-    <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
+    <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>

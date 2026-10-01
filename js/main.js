@@ -3,16 +3,20 @@
    Se carga al final del <body> en todas las páginas. Cada bloque comprueba
    que sus elementos existen, así que solo actúa en las páginas que lo usan.
      1. Menú móvil y submenú "About Us"          (todas)
-     2. Hero con secuencia de imágenes           (index)
+     2. Hero: secuencia (escritorio) o video     (index)
      3. Menú fijo en escritorio — home           (index)
-     4. Menú fijo en escritorio — interiores     (about, our-beliefs, meet-our-pastor, contact)
+     4. Menú fijo en escritorio — interiores     (about, our-beliefs, meet-our-pastor, contact, calendar)
      5. Parallax de imágenes de fondo            (index, contact)
-     6. Calendario: vista de agenda en móvil     (calendar)
+     6. Calendario: vista de mes o de agenda     (calendar)
    ===================================================================== */
 
 // ---------- Utilidades compartidas ----------
 const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DESKTOP = matchMedia('(min-width: 900px)');
+// Hero del home: escritorio con ratón → secuencia con scroll; móvil y tableta → video (igual que en el CSS)
+const SCROLL_HERO = matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine)').matches;
+// Ahorro de datos activado en el navegador: solo la imagen fija
+const SAVE_DATA = !!(navigator.connection && navigator.connection.saveData);
 
 // Ejecuta fn como máximo una vez por fotograma al hacer scroll o cambiar el tamaño.
 // Devuelve la función para pedir una actualización manualmente.
@@ -70,16 +74,31 @@ function stickyNav(nav, shouldStick, onChange) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
 })();
 
-// ---------- Hero del home: secuencia de imágenes controlada por scroll (index.html) ----------
+// ---------- Hero del home (index.html) ----------
+// Móvil y tableta: video en bucle, vertical u horizontal según la pantalla; se pausa fuera de la vista.
 (() => {
-  const FRAMES = 120;                                   // img/sequence/<set>/frame_001…120.webp
+  const video = document.querySelector('.hero__video');
+  if (!video || SCROLL_HERO || REDUCED_MOTION || SAVE_DATA) return;   // sin video: queda el póster
+  const portrait = matchMedia('(orientation: portrait)');
+  const setSource = () => {
+    video.src = portrait.matches ? video.dataset.portrait : video.dataset.landscape;
+    video.play().catch(() => {});                       // si el navegador bloquea el autoplay, queda el póster
+  };
+  setSource();
+  portrait.addEventListener('change', setSource);
+  new IntersectionObserver(([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause(); })
+    .observe(video);
+})();
+
+// Escritorio: secuencia de 60 imágenes controlada por el scroll.
+(() => {
+  const FRAMES = 60;                                    // img/hero/desktop/frame_001…060.webp
   const wrap   = document.getElementById('hero-scroll');
-  if (!wrap) return;                                    // solo existe en index.html
+  if (!wrap || !SCROLL_HERO) return;
   const hero   = document.getElementById('hero');
-  const canvas = hero.querySelector('.hero__bg');
+  const canvas = hero.querySelector('.hero__canvas');
   const ctx    = canvas.getContext('2d');
-  const set    = matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
-  const src    = i => `img/sequence/${set}/frame_${String(i + 1).padStart(3, '0')}.webp`;
+  const src    = i => `img/hero/desktop/frame_${String(i + 1).padStart(3, '0')}.webp`;
 
   const frames = new Array(FRAMES);
   let current = 0, target = 0, drawn = -1, raf = 0;
@@ -131,7 +150,7 @@ function stickyNav(nav, shouldStick, onChange) {
   // Orden de carga: primero fotogramas repartidos, luego se rellenan huecos
   function loadOrder() {
     const seen = new Set(), order = [];
-    for (let step = 32; step >= 1; step /= 2)
+    for (let step = 16; step >= 1; step /= 2)
       for (let i = 0; i < FRAMES; i += step) if (!seen.has(i)) { seen.add(i); order.push(i); }
     return order;
   }
@@ -149,16 +168,19 @@ function stickyNav(nav, shouldStick, onChange) {
   async function preload(list) {
     let next = 0;
     const worker = async () => { while (next < list.length) await load(list[next++]); };
-    await Promise.all(Array.from({ length: 6 }, worker));   // 6 descargas en paralelo
+    await Promise.all(Array.from({ length: 4 }, worker));   // 4 descargas en paralelo
   }
 
   resize();
   window.addEventListener('resize', resize);
 
-  if (REDUCED_MOTION) { load(0); return; }                         // movimiento reducido: solo el primer fotograma
+  if (REDUCED_MOTION || SAVE_DATA) { load(0); return; }    // solo el primer fotograma
   window.addEventListener('scroll', updateTarget, { passive: true });
   updateTarget();
-  preload(loadOrder());
+  // El resto de fotogramas se descarga cuando la página ya terminó de cargar
+  const start = () => preload(loadOrder());
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start, { once: true });
 })();
 
 // ---------- Home: menú fijo en escritorio al empezar a ver "About Us" (index.html) ----------
@@ -208,8 +230,10 @@ function stickyNav(nav, shouldStick, onChange) {
   items.forEach(i => io.observe(i.el));
 })();
 
-// ---------- Calendario: en pantallas pequeñas usa la vista de agenda (calendar.html) ----------
+// ---------- Calendario: vista de mes en pantallas grandes, de agenda en móvil (calendar.html) ----------
+// El src se pone aquí para que el calendario se cargue una sola vez, ya con la vista correcta.
 (() => {
-  const cal = document.querySelector('.calendar__embed[data-mobile-src]');
-  if (cal && matchMedia('(max-width: 640px)').matches) cal.src = cal.dataset.mobileSrc;
+  const cal = document.querySelector('.calendar__embed[data-src]');
+  if (!cal) return;
+  cal.src = matchMedia('(max-width: 640px)').matches ? cal.dataset.mobileSrc : cal.dataset.src;
 })();

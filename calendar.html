@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calendar | Kona Seventh-day Adventist Church</title>
 <meta name="description" content="Church services, events and activities at the Kona Seventh-day Adventist Church in Captain Cook, Hawaii.">
+<link rel="preload" href="fonts/noto-serif/noto-serif-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/noto-sans/noto-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="page-about page-editorial">
@@ -15,7 +17,7 @@
     <a href="index.html" class="brand"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445"></a>
     <ul class="nav__links">
       <li><a href="index.html">HOME</a></li>
-      <li class="nav__item has-sub">
+      <li class="has-sub">
         <a href="about.html" aria-haspopup="true">ABOUT US <svg class="nav__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="submenu" aria-label="About Us">
           <li><a href="about.html">Who We Are</a></li>
@@ -33,7 +35,7 @@
   </div>
 </header>
 
-<main class="calendar-page">
+<main>
 
   <!-- Hero banner -->
   <section class="page-hero" aria-labelledby="page-title">
@@ -73,14 +75,15 @@
     </ul>
   </section>
 
-  <!-- Calendario de Google (hora de Hawái). En pantallas pequeñas el JS cambia a vista de agenda. -->
+  <!-- Calendario de Google (hora de Hawái). El JS elige la vista: mes en pantallas grandes, agenda en móvil. -->
   <section class="calendar" id="calendar" aria-label="Calendar of services and events">
     <div class="calendar__frame">
       <iframe class="calendar__embed"
               title="Kona SDA Church calendar of services and events"
-              src="https://calendar.google.com/calendar/embed?src=bbdc40260f9eb166dd29863cd0284336798bbf6154019d2cab7e2cb9b9b5b617%40group.calendar.google.com&amp;ctz=Pacific%2FHonolulu&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=MONTH"
-              data-mobile-src="https://calendar.google.com/calendar/embed?src=bbdc40260f9eb166dd29863cd0284336798bbf6154019d2cab7e2cb9b9b5b617%40group.calendar.google.com&amp;ctz=Pacific%2FHonolulu&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA"
+              data-src="https://calendar.google.com/calendar/embed?src=bbdc40260f9eb166dd29863cd0284336798bbf6154019d2cab7e2cb9b9b5b617%40group.calendar.google.com&amp;ctz=Pacific%2FHonolulu&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=1&amp;showTz=0&amp;mode=MONTH"
+              data-mobile-src="https://calendar.google.com/calendar/embed?src=bbdc40260f9eb166dd29863cd0284336798bbf6154019d2cab7e2cb9b9b5b617%40group.calendar.google.com&amp;ctz=Pacific%2FHonolulu&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=1&amp;showTz=0&amp;mode=AGENDA"
               loading="lazy"></iframe>
+      <noscript><p><a href="https://calendar.google.com/calendar/embed?src=bbdc40260f9eb166dd29863cd0284336798bbf6154019d2cab7e2cb9b9b5b617%40group.calendar.google.com&amp;ctz=Pacific%2FHonolulu&amp;showTitle=0&amp;showPrint=0&amp;showCalendars=1&amp;showTz=0&amp;mode=MONTH" target="_blank" rel="noopener">Open the church calendar in Google Calendar</a></p></noscript>
     </div>
   </section>
 
@@ -168,7 +171,7 @@
     </li>
     <li><a href="our-beliefs.html">OUR BELIEF</a></li>
     <li><a href="calendar.html" aria-current="page">CALENDAR</a></li>
-    <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
+    <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>

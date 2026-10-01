@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Our Beliefs | Kona Seventh-day Adventist Church</title>
 <meta name="description" content="The biblical beliefs that shape the faith, community and daily life of the Kona Seventh-day Adventist Church ʻohana in Hawaiʻi.">
+<link rel="preload" href="fonts/noto-serif/noto-serif-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/noto-sans/noto-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="page-about page-editorial">
@@ -15,7 +17,7 @@
     <a href="index.html" class="brand"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445"></a>
     <ul class="nav__links">
       <li><a href="index.html">HOME</a></li>
-      <li class="nav__item has-sub">
+      <li class="has-sub">
         <a href="about.html" aria-haspopup="true">ABOUT US <svg class="nav__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="submenu" aria-label="About Us">
           <li><a href="about.html">Who We Are</a></li>
@@ -33,7 +35,7 @@
   </div>
 </header>
 
-<main class="beliefs" id="main">
+<main id="main">
 
   <!-- ===================== 1. HERO ===================== -->
   <section class="page-hero" aria-labelledby="page-title">
@@ -179,7 +181,7 @@
           <cite>Titus 2:13</cite>
         </blockquote>
       </div>
-      <!-- Camino que sube hacia la cruz -->
+      <!-- Camino con huellas que sube hacia la cruz -->
       <div class="belief__art belief__art--sunrise" aria-hidden="true">
         <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <path d="M120 5v-7M135.5 9.2l4-7M146.8 20.5l7-4M151 36h8M89 36h-8M93.2 20.5l-7-4M104.5 9.2l-4-7" opacity=".55"/>
@@ -187,7 +189,33 @@
           <path d="M14 108c38-2 70-28 106-28s68 26 106 28"/>
           <path d="M84 156c-2-14 0-22 6-28s26-14 29-24-2-18-1-24"/>
           <path d="M156 156c-8-14-30-20-33-28s12-16 14-24-13-18-15-24"/>
-          <path d="M118 150l-6-9M106 133l-2-4M110 121l8-5M126 109l2-3" opacity=".55"/>
+          <!-- huellas que suben hacia la cruz -->
+          <g fill="currentColor" stroke="none" opacity=".75">
+            <ellipse cx="119.2" cy="146.7" rx="1.85" ry="2.84" transform="rotate(-28 119.2 146.7)"/>
+            <ellipse cx="121.4" cy="150.9" rx="1.37" ry="1.49" transform="rotate(-28 121.4 150.9)"/>
+            <ellipse cx="108.1" cy="140.3" rx="1.63" ry="2.49" transform="rotate(-34 108.1 140.3)"/>
+            <ellipse cx="110.5" cy="143.8" rx="1.21" ry="1.31" transform="rotate(-34 110.5 143.8)"/>
+            <ellipse cx="108.6" cy="129.4" rx="1.43" ry="2.19" transform="rotate(-13 108.6 129.4)"/>
+            <ellipse cx="109.4" cy="133.0" rx="1.06" ry="1.15" transform="rotate(-13 109.4 133.0)"/>
+            <ellipse cx="108.6" cy="121.1" rx="1.26" ry="1.93" transform="rotate(43 108.6 121.1)"/>
+            <ellipse cx="106.4" cy="123.5" rx="0.93" ry="1.01" transform="rotate(43 106.4 123.5)"/>
+            <ellipse cx="117.1" cy="119.1" rx="1.15" ry="1.76" transform="rotate(51 117.1 119.1)"/>
+            <ellipse cx="114.8" cy="120.9" rx="0.85" ry="0.93" transform="rotate(51 114.8 120.9)"/>
+            <ellipse cx="120.0" cy="111.7" rx="1.06" ry="1.62" transform="rotate(49 120.0 111.7)"/>
+            <ellipse cx="118.0" cy="113.5" rx="0.78" ry="0.85" transform="rotate(49 118.0 113.5)"/>
+            <ellipse cx="126.9" cy="109.5" rx="0.97" ry="1.48" transform="rotate(40 126.9 109.5)"/>
+            <ellipse cx="125.3" cy="111.4" rx="0.72" ry="0.78" transform="rotate(40 125.3 111.4)"/>
+            <ellipse cx="126.8" cy="102.9" rx="0.87" ry="1.33" transform="rotate(16 126.8 102.9)"/>
+            <ellipse cx="126.2" cy="105.0" rx="0.64" ry="0.70" transform="rotate(16 126.2 105.0)"/>
+            <ellipse cx="129.4" cy="97.8" rx="0.77" ry="1.18" transform="rotate(-10 129.4 97.8)"/>
+            <ellipse cx="129.7" cy="99.8" rx="0.57" ry="0.62" transform="rotate(-10 129.7 99.8)"/>
+            <ellipse cx="125.5" cy="94.1" rx="0.70" ry="1.07" transform="rotate(-23 125.5 94.1)"/>
+            <ellipse cx="126.2" cy="95.8" rx="0.52" ry="0.56" transform="rotate(-23 126.2 95.8)"/>
+            <ellipse cx="125.5" cy="89.4" rx="0.64" ry="0.98" transform="rotate(-29 125.5 89.4)"/>
+            <ellipse cx="126.3" cy="90.8" rx="0.47" ry="0.51" transform="rotate(-29 126.3 90.8)"/>
+            <ellipse cx="121.8" cy="87.1" rx="0.59" ry="0.90" transform="rotate(-30 121.8 87.1)"/>
+            <ellipse cx="122.6" cy="88.4" rx="0.44" ry="0.48" transform="rotate(-30 122.6 88.4)"/>
+          </g>
           <path d="M30 124c10-3 20-4 30-2M180 122c10-2 20-1 30 2M18 142c12-3 24-3 36 0M186 140c12-3 24-3 36 0" opacity=".45"/>
         </svg>
       </div>
@@ -313,7 +341,7 @@
     </li>
     <li><a href="our-beliefs.html" aria-current="page">OUR BELIEF</a></li>
     <li><a href="calendar.html">CALENDAR</a></li>
-    <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
+    <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>

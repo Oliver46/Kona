@@ -88,6 +88,7 @@
 :root {
   /* Colores de marca */
   --ocean: #003F6E;                    /* azul océano: footer, títulos y acentos */
+  --ocean-hover: #00548f;              /* hover de los botones azules */
 
   /* Texto */
   --white: #fff;
@@ -96,7 +97,7 @@
   --muted: #4a5568;                    /* texto secundario (newsletter) */
 
   /* Superficies y bordes */
-  --line: #e5e7eb;
+  --line: rgba(0, 63, 110, .12);       /* borde suave de tarjetas y círculos */
   --glass: rgba(255,255,255,.12);
   --glass-border: rgba(255,255,255,1);
   --dark-glass: rgba(10, 14, 20, .55); /* fondo del menú fijo */
@@ -114,6 +115,8 @@
   --text-size: 18px;                   /* párrafos de lectura */
   --text-leading: 1.75;
   --on-dark: rgba(255,255,255,.92);    /* párrafos sobre fondos oscuros */
+  --on-dark-muted: rgba(255,255,255,.85); /* texto secundario sobre fondos oscuros */
+  --shadow-soft: 0 10px 30px rgba(0, 63, 110, .08);   /* sombra de tarjetas e imágenes */
 
   /* Medidas */
   --gutter: clamp(24px, 4vw, 48px);
@@ -147,18 +150,17 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   white-space: nowrap;
   transition: background .2s, color .2s, border-color .2s;
 }
-.btn--light { background: var(--white); color: #111; }
+.btn--light, .btn--glass:hover { background: var(--white); color: #111; }   /* el de cristal se rellena como BULLETIN */
 .btn--glass {
   background: var(--glass); color: var(--white);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
-.btn--glass:hover { background: var(--white); color: #111; }   /* se rellena como BULLETIN */
 .btn--sm { height: 40px; padding: 0 20px; font-size: 14px; }
 .btn--lg { height: 52px; padding: 0 26px; gap: 10px; font-weight: 600; }   /* más alto, para llamadas a la acción */
 /* Botones azul océano para fondos claros */
 .btn--ocean { background: var(--ocean); color: #fff; border: 1.5px solid var(--ocean); }
-.btn--ocean:hover { background: #00548f; border-color: #00548f; }
+.btn--ocean:hover { background: var(--ocean-hover); border-color: var(--ocean-hover); }
 .btn--ocean-outline { background: transparent; color: var(--ocean); border: 1.5px solid var(--ocean); }
 .btn--ocean-outline:hover { background: var(--ocean); color: #fff; }
 
@@ -226,7 +228,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 
 .nav__links .submenu a {
   display: block; padding: 10px 14px; border-radius: 8px; white-space: nowrap;
-  font-size: 14px; letter-spacing: .02em; color: rgba(255, 255, 255, .85);
+  font-size: 14px; letter-spacing: .02em; color: var(--on-dark-muted);
 }
 .nav__links .submenu a:hover,
 .nav__links .submenu a:focus-visible { background: rgba(255, 255, 255, .1); color: #fff; transform: none; }
@@ -283,7 +285,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 }
 .menu__links .menu__sub a {
   font-family: var(--font-ui); font-size: 18px; line-height: 1.3;
-  color: rgba(255, 255, 255, .8);
+  color: var(--on-dark-muted);
 }
 .menu__links .menu__sub a[aria-current="page"] { color: #fff; font-weight: 500; }
 
@@ -308,6 +310,17 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 }
 .eyebrow, .contact-list h3, .bl-verse cite { color: var(--koa); }
 .eyebrow--light, .schedule dt, .footer .footer__heading, .bl-verse--light cite { color: var(--koa-light); }   /* sobre fondos oscuros */
+
+/* Tarjeta blanca: newsletter, tarjetas de cada sábado y marco del calendario */
+.newsletter__card, .sabbath__card, .calendar__frame {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-card);
+}
+
+/* Círculo de icono verde-océano: contacto, cada sábado y newsletter */
+.contact-list__icon, .sabbath__icon, .newsletter__icon {
+  display: grid; place-items: center; border-radius: 50%;
+  background: var(--sea); color: var(--ocean);
+}
 
 /* Adorno: línea fina con un punto en el centro (también bajo los títulos del home) */
 .bl-ornament, .block h2::after {
@@ -360,10 +373,10 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .parallax__box h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.15; }
 .site .parallax__box h2 { color: #fff; }
 .parallax--right h2 { text-align: center; }
-.parallax__box p { margin-top: 18px; color: var(--on-dark); }
+.parallax__box p { margin-top: 18px; }
 .parallax__btn { margin-top: 24px; }
 
-.schedule { margin-top: 22px; font-size: var(--text-size); line-height: var(--text-leading); color: var(--on-dark); }
+.schedule { margin-top: 22px; font-size: var(--text-size); line-height: var(--text-leading); }
 .schedule dt { margin-bottom: 4px; }   /* estilo de etiqueta en 4.4 */
 .schedule dd { margin: 0; }
 
@@ -381,16 +394,14 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .newsletter::after { background: rgba(10, 40, 75, .25); }   /* capa suave para que la tarjeta resalte */
 .newsletter__card {
   position: relative; max-width: 900px; margin: 0 auto; text-align: center;
-  background: #fff;
-  border: 1px solid var(--line); border-radius: var(--radius-card);
-  box-shadow: 0 18px 48px rgba(10, 30, 60, .28);
+  box-shadow: 0 18px 48px rgba(10, 30, 60, .28);   /* más fuerte: va sobre una foto */
   padding: 64px 24px 44px;
 }
 .newsletter__icon {                    /* círculo como los iconos de contact.html */
   position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
-  width: 76px; height: 76px; border-radius: 50%;
-  background: var(--sea); box-shadow: inset 0 0 0 8px #fff;   /* aro blanco + disco sea */
-  border: 1px solid var(--line); display: grid; place-items: center; color: var(--ocean);
+  width: 76px; height: 76px;
+  box-shadow: inset 0 0 0 8px #fff;    /* aro blanco + disco verde-océano */
+  border: 1px solid var(--line);
   transition: background-color .3s ease, color .3s ease, scale .3s ease;
 }
 .newsletter__phone, .newsletter__wave { transform-box: fill-box; transform-origin: center; }
@@ -425,13 +436,15 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .footer__inner { max-width: 1160px; margin: 0 auto; }
 
 /* Marca */
+/* Filas del footer: marca arriba y copyright abajo */
+.footer__brand, .footer__bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
 .footer__brand {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;
+  gap: 16px 32px;
   padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.2);
 }
 .footer__logo { display: inline-block; border-radius: 6px; }
 .footer__logo img { display: block; height: 56px; width: auto; }
-.footer__brand p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.85); }
+.footer__brand p { font-size: 15px; line-height: 1.6; color: var(--on-dark-muted); }
 
 /* Columnas: 1 en móvil, 2 en tableta, 4 en escritorio */
 .footer__grid { display: grid; gap: 36px 32px; grid-template-columns: 1fr; padding-top: 40px; }
@@ -445,11 +458,11 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .footer a.remove-decoration,
 .footer a.remove-decoration:hover { text-decoration: none; }
 .footer address { font-style: normal; }
-.footer__note { margin-top: 12px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.8); }
+.footer__note { margin-top: 12px; font-size: 14px; line-height: 1.7; color: var(--on-dark-muted); }
 
 /* Línea final: copyright y "Made with" */
 .footer__bottom {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
+  gap: 8px 24px;
   margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.45);
 }
 .footer__copy { display: flex; align-items: center; gap: 10px; }
@@ -468,17 +481,28 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   min-height: 100svh;                  /* crece si el contenido lo necesita */
   display: flex; flex-direction: column;
 }
-.hero-scroll { position: relative; height: 250vh; }   /* el scroll dentro recorre la secuencia */
-.hero-scroll .hero { position: sticky; top: 0; }
+/* Móvil y tableta: hero de una pantalla con video. Escritorio (pantalla ancha + ratón):
+   el hero se queda fijo mientras el scroll recorre la secuencia (una pantalla de scroll).
+   La misma condición está en js/main.js (SCROLL_HERO). */
+.hero-scroll { position: relative; }
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .hero-scroll { height: 200vh; }
+  .hero-scroll .hero { position: sticky; top: 0; }
+}
 
 .hero__bg {
   position: absolute; inset: 0; z-index: -2;
-  width: 100%; height: 100%; display: block;
-  /* primer fotograma como póster mientras carga la secuencia */
-  background: #0b0b0c url("../img/sequence/desktop/frame_001.webp") center / cover no-repeat;
+  width: 100%; height: 100%; display: block; object-fit: cover;
+  /* primer fotograma como póster mientras carga el video o la secuencia */
+  background: #0b0b0c url("../img/hero/hero-portrait-poster.webp") center / cover no-repeat;
 }
-@media (max-width: 767px) {
-  .hero__bg { background-image: url("../img/sequence/mobile/frame_001.webp"); }
+@media (orientation: landscape) {
+  .hero__bg { background-image: url("../img/hero/hero-landscape-poster.webp"); }
+}
+.hero__canvas { display: none; }
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .hero__canvas { display: block; background-image: url("../img/hero/desktop/frame_001.webp"); }
+  .hero__video { display: none; }
 }
 .hero__overlay { position: absolute; inset: 0; z-index: -1; background: rgba(0,0,0,.2); }
 .hero__missing {
@@ -495,9 +519,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   text-align: center;
   padding: 48px var(--gutter);
 }
-.hero h1 {
-  font-family: var(--serif); font-weight: 600;
-  font-size: clamp(32px, 10.2vw, 40px); line-height: 1.02; letter-spacing: -.01em;
+.hero h1 {                             /* tipo de título en 6.5 */
+  font-size: clamp(32px, 10.2vw, 40px); line-height: 1.02;
   text-wrap: balance; overflow-wrap: break-word;
   max-width: 1024px;
   text-shadow: 0 0 32px rgba(255,255,255,.35), 0 0 80px rgba(255,255,255,.18);
@@ -575,9 +598,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .page-hero::after {                    /* capa para contraste del título */
   background: linear-gradient(rgba(0, 20, 40, .45) 0%, rgba(0, 30, 55, .30) 35%, rgba(0, 30, 55, .55) 100%);
 }
-.page-hero h1 {
-  font-family: var(--serif); font-weight: 600;
-  font-size: clamp(40px, 6.5vw, 76px); line-height: 1.05; letter-spacing: -.01em;
+.page-hero h1 {                        /* tipo de título en 6.5 */
+  font-size: clamp(40px, 6.5vw, 76px); line-height: 1.05;
   color: #fff;
   text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
 }
@@ -596,7 +618,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 640px) { .pillars { grid-template-columns: 1fr 1fr; } }
 .pillars li {
   position: relative; padding: 16px 18px 16px 52px;
-  background: #fff; border: 1px solid rgba(0, 63, 110, .12); border-radius: 10px;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-card);
   font-size: 16px; line-height: 1.5; font-weight: 600; color: var(--charcoal);
 }
 .pillars li::before {                  /* viñeta: círculo azul con check */
@@ -619,11 +641,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 
 .contact-list { list-style: none; margin-top: 32px; display: grid; gap: 24px; }
 .contact-list li { display: flex; gap: 18px; align-items: flex-start; }
-.contact-list__icon, .sabbath__icon {
-  flex: none; width: 48px; height: 48px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: var(--sea); color: var(--ocean);
-}
+.contact-list__icon, .sabbath__icon { flex: none; width: 48px; height: 48px; }   /* círculo en 4.4 */
 .contact-list h3 { padding-top: 2px; }   /* estilo de etiqueta en 4.4 */
 .contact-list p { margin-top: 6px; font-size: 18px; line-height: 1.6; color: var(--charcoal); }
 .contact-list a {
@@ -639,7 +657,6 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 /* ---------- 6.4b Calendar: introducción, tarjetas de cada sábado, calendario centrado e invitación (.bl-cta) ---------- */
 /* Introducción y tarjetas "cada sábado" */
 .cal-intro { padding: clamp(72px, 9vw, 120px) 24px clamp(56px, 7vw, 96px); }
-.cal-intro__head { max-width: 720px; margin: 0 auto; text-align: center; }
 .cal-intro__head h2 { margin-top: 14px; }
 .sabbath {
   list-style: none; max-width: 1040px; margin: clamp(40px, 5vw, 56px) auto 0;
@@ -648,8 +665,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 760px) { .sabbath { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .sabbath__card {
   padding: 32px 24px; text-align: center;
-  background: #fff; border: 1px solid rgba(0, 63, 110, .12); border-radius: var(--radius-card);
-  box-shadow: 0 10px 30px rgba(0, 63, 110, .06);
+  box-shadow: var(--shadow-soft);
 }
 .sabbath__icon { margin: 0 auto 18px; }
 .sabbath__card h3 { font-size: clamp(22px, 2vw, 24px); line-height: 1.25; }
@@ -662,7 +678,6 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .calendar__frame {
   max-width: 1040px; margin: 0 auto;
   padding: clamp(6px, 1.2vw, 14px);
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-card);
   box-shadow: 0 18px 48px rgba(10, 30, 60, .12);
 }
 .calendar__embed { display: block; width: 100%; height: clamp(520px, 72vh, 760px); border: 0; border-radius: 8px; }
@@ -672,7 +687,9 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
    6.5 ESTILO EDITORIAL (our-beliefs, about, meet-our-pastor y contact) — body.page-editorial
    Tipografía: Noto Serif (títulos) + Noto Sans (texto)
    ===================================================================== */
-:where(.page-editorial) :is(h2, h3) { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; color: var(--ocean); }
+/* Todos los títulos: Noto Serif 600 (hero, banners y secciones) */
+.hero h1, .page-hero h1, :where(.page-editorial) :is(h2, h3) { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; }
+:where(.page-editorial) :is(h2, h3) { color: var(--ocean); }
 
 /* Títulos de sección (home y páginas editoriales): un solo tamaño */
 .block h2, .about-who__inner h2, .bl-intro__text h2, .bl-core__head h2, .bl-28 h2, .bl-cta h2, .cal-intro__head h2 {
@@ -709,7 +726,6 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .bl-verse p { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.6; color: var(--charcoal); }
 .bl-verse cite { display: block; margin-top: 8px; font-style: normal; }   /* estilo de etiqueta en 4.4 */
 .bl-verse--light { border-left-color: var(--koa-light); }
-.bl-verse--light p { color: var(--on-dark); }
 
 /* ---------- 2. Introducción ---------- */
 .bl-intro { padding: clamp(72px, 9vw, 128px) 24px clamp(64px, 8vw, 112px); }
@@ -717,8 +733,10 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 900px) { .bl-intro__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
 .bl-intro__media {
   --shape: 120px 18px 120px 18px;         /* forma de hoja */
-  margin: 0; position: relative; isolation: isolate; max-width: 560px; justify-self: center; width: 100%;
+  margin: 0; position: relative; isolation: isolate;
 }
+/* Columna de imagen: máximo 560px y centrada */
+.bl-intro__media, .belief__collage { max-width: 560px; width: 100%; justify-self: center; }
 .bl-intro__media img { aspect-ratio: 643 / 360; }
 /* Foto con forma + la misma forma en verde-océano desplazada detrás */
 .bl-intro__media img, .belief--creation .belief__media img { border-radius: var(--shape); }
@@ -738,7 +756,9 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 /* ---------- 3. Introducción a las creencias + 01 ---------- */
 .bl-core { position: relative; background: var(--sea); padding: 0 24px clamp(72px, 9vw, 120px); }
 .bl-core__wave { display: block; width: calc(100% + 48px); height: 56px; margin: -55px -24px 0; fill: var(--sea); }
-.bl-core__head { max-width: 720px; margin: 0 auto; padding-top: clamp(40px, 6vw, 72px); text-align: center; }
+/* Cabeceras centradas de sección */
+.bl-core__head, .cal-intro__head { max-width: 720px; margin: 0 auto; text-align: center; }
+.bl-core__head { padding-top: clamp(40px, 6vw, 72px); }
 .bl-core__head h2 { margin-top: 18px; }
 
 .bl-toc ol {
@@ -779,7 +799,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 }
 .belief--word .belief__art {
   width: 148px; height: 148px; border-radius: 50%; display: grid; place-items: center;
-  background: #fff; box-shadow: 0 10px 30px rgba(0, 63, 110, .08);
+  background: #fff; box-shadow: var(--shadow-soft);
 }
 .belief--word .belief__art svg { width: 92px; height: 92px; }
 /* Móvil: icono arriba, centrado, y el texto centrado debajo */
@@ -813,9 +833,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 900px) { .belief--salvation__inner { grid-template-columns: minmax(0, 1fr) 220px; } }
 .belief--salvation .belief__body { max-width: 640px; }
 .belief--salvation .belief__num { color: var(--koa-light); flex-wrap: wrap; }
-.belief__tag { order: 3; color: rgba(255,255,255,.85); }   /* estilo de etiqueta en 4.4 */
+.belief__tag { order: 3; color: var(--on-dark-muted); }   /* estilo de etiqueta en 4.4 */
 .belief--salvation h3 { color: #fff; font-size: clamp(36px, 4.6vw, 58px); line-height: 1.08; }
-.belief--salvation .belief__body > p:not(.belief__num) { color: var(--on-dark); }
 .belief--salvation__cross {
   display: none; width: 100px; height: 160px; justify-self: center;
   color: rgba(255, 236, 214, .75);
@@ -828,11 +847,10 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 900px) { .belief--church { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
 .belief__collage {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  max-width: 560px; width: 100%; justify-self: center;
 }
 .belief__collage img {
   aspect-ratio: 3 / 2;
-  border-radius: 14px; box-shadow: 0 12px 28px rgba(0, 30, 55, .14);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-soft);
 }
 .belief__collage img:nth-child(2) { margin-top: 48px; }
 .belief__collage img:nth-child(3) { grid-column: 1 / -1; width: 78%; justify-self: end; margin-top: -32px; }
@@ -863,7 +881,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   color: transparent; -webkit-text-stroke: 1.5px rgba(243, 211, 176, .75);
 }
 .bl-28 h2 { margin-top: 12px; color: #fff; }
-.bl-28__text > p:not(.eyebrow) { margin-top: 16px; max-width: 54ch; color: var(--on-dark); }
+.bl-28__text > p:not(.eyebrow) { margin-top: 16px; max-width: 54ch; }
 .bl-28 .btn { margin-top: 28px; }
 
 /* ---------- 6. Living Our Faith ---------- */
@@ -879,7 +897,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .bl-living__card { width: 100%; max-width: var(--wrap); margin: 0 auto; color: #fff; }
 .bl-living__card > * { max-width: 620px; }
 .bl-living h2 { margin-top: 12px; color: #fff; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; }
-.bl-living__card > p:not(.eyebrow) { margin-top: 18px; color: var(--on-dark); }
+.bl-living__card > p:not(.eyebrow) { margin-top: 18px; }
 .bl-living__list {
   list-style: none; margin-top: 18px;
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -899,6 +917,10 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .bl-cta__times span { white-space: nowrap; }
 .bl-cta__actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 .bl-cta__actions .btn { min-width: 200px; }
+
+/* Texto sobre fondos oscuros (parallax, salvación, versículo claro, 28 creencias, Living Our Faith) */
+.schedule, .parallax__box p, .belief--salvation .belief__body > p:not(.belief__num),
+.bl-verse--light p, .bl-28__text > p:not(.eyebrow), .bl-living__card > p:not(.eyebrow) { color: var(--on-dark); }
 
 /* ---------- Ajustes móviles ---------- */
 @media (max-width: 599px) {
