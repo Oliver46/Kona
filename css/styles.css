@@ -569,7 +569,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 @media (min-width: 560px) { .ministries { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .ministries { grid-template-columns: repeat(3, 1fr); } }
 .ministry__img {
-  display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+  display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover;
   background: var(--sea);
   border-radius: 64px 12px 64px 12px;   /* forma de hoja, como en las otras páginas */
 }
