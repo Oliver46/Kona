@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meet Our Pastor | Kona Seventh-day Adventist Church</title>
 <meta name="description" content="Meet Pastor Jacob Moreno, pastor of the Kona and Kona Hispanic Seventh-day Adventist Churches in Hawaii.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500&amp;display=swap">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-about">
+<body class="page-about page-editorial">
 
 <!-- =================== HEADER =================== -->
 <header class="site-header">
@@ -24,8 +22,8 @@
           <li><a href="meet-our-pastor.html" aria-current="page">Meet Our Pastor</a></li>
         </ul>
       </li>
-      <li><a href="index.html#beliefs">OUR BELIEF</a></li>
-      <li><a href="#">CALENDAR</a></li>
+      <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+      <li><a href="calendar.html">CALENDAR</a></li>
       <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
     </ul>
     <a href="contact.html" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
@@ -40,19 +38,24 @@
   <!-- Hero banner -->
   <section class="page-hero" aria-labelledby="page-title">
     <img class="page-hero__img" src="img/beach2.webp" alt="" aria-hidden="true" fetchpriority="high">
-    <h1 id="page-title">About Us</h1>
+    <h1 id="page-title">Meet Our Pastor</h1>
+    <a class="scroll-cue" href="#pastor">
+      <span>Scroll to explore</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
   </section>
 
   <!-- Pastor: foto + texto -->
-  <section class="pastor" aria-labelledby="pastor-title">
-    <div class="pastor__grid">
-      <figure class="pastor__media">
+  <section class="bl-intro" id="pastor" aria-labelledby="pastor-title">
+    <div class="bl-intro__grid">
+      <figure class="bl-intro__media bl-intro__media--portrait">
         <img src="img/Pastor-Jacob.webp" alt="Portrait of Pastor Jacob Moreno smiling, wearing a navy Hawaiian shirt" width="1000" height="800" loading="lazy" decoding="async">
       </figure>
-      <div class="pastor__text">
+      <div class="bl-intro__text">
+        <p class="eyebrow">Pastor Jacob Moreno</p>
         <h2 id="pastor-title">Meet Our Pastor</h2>
-        <p class="pastor__name">Pastor Jacob Moreno</p>
-        <p>Pastor Jacob Moreno serves as pastor of the Kona and Kona Hispanic Seventh-day Adventist Churches, where he shares God’s love in both English and Spanish. A devoted husband and father of three, Pastor Moreno brings more than 15 years of global missionary experience and a passion for connecting with people through faith, service, and community. He enjoys triathlons, leads a unique bike ministry, and embraces the richness of Hawaiian culture and food. His heart for Christ and others shines through in his ministry, inspiring all ages to grow in their walk with God.</p>
+        <p>Pastor Jacob Moreno serves as pastor of the Kona and Kona Hispanic Seventh-day Adventist Churches, where he shares God’s love in both English and Spanish.</p>
+        <p>A devoted husband and father of three, Pastor Moreno brings more than 15 years of global missionary experience and a passion for connecting with people through faith, service, and community. He enjoys triathlons, leads a unique bike ministry, and embraces the richness of Hawaiian culture and food. His heart for Christ and others shines through in his ministry, inspiring all ages to grow in their walk with God.</p>
       </div>
     </div>
   </section>
@@ -61,31 +64,52 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__cols">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="index.html#beliefs">Our Beliefs</a></li>
-        <li><a href="index.html#services">Calendar</a></li>
-        <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
-        <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
-        <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
-        <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
-        <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
-        <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
-      </ul>
-      <div class="footer__contact">
-        <p><span class="footer__label">Address:</span><br>82-1013 Kinue Rd, Captain Cook<br>HI 96704</p>
-        <p><span class="footer__label">Phone:</span><br><a href="tel:+18083233317">(808) 323-3317</a></p>
+    <div class="footer__brand">
+      <a href="index.html" class="footer__logo"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445" loading="lazy"></a>
+      <p>Jesus. Aloha. ʻOhana.<br>A Christ-centered church family in Kona, Hawaiʻi.</p>
+    </div>
+
+    <div class="footer__grid">
+      <nav aria-labelledby="f-church">
+        <h2 class="footer__heading" id="f-church">Church</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="meet-our-pastor.html" aria-current="page">Meet Our Pastor</a></li>
+          <li><a href="our-beliefs.html">Our Beliefs</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="f-resources">
+        <h2 class="footer__heading" id="f-resources">Ministries &amp; Resources</h2>
+        <ul>
+          <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
+          <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
+          <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
+          <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
+          <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
+          <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
+          <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="footer__heading">Visit</h2>
+        <address>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=82-1013+Kinue+Rd%2C+Captain+Cook%2C+HI+96704" target="_blank" rel="noopener">82-1013 Kinue Rd, Captain Cook<br>HI 96704</a>
+        </address>
+        <p class="footer__note">Saturdays<br>Sabbath School 9:30 am<br>Worship Service 10:45 am</p>
+      </div>
+      <div>
+        <h2 class="footer__heading">Contact</h2>
+        <p><a href="tel:+18083233317">(808) 323-3317</a></p>
+        <p class="footer__note">Text <strong>JOIN</strong> or <strong>GUEST</strong> to<br><a href="sms:+18333709973">833-370-9973</a> for SMS updates</p>
       </div>
     </div>
+
     <div class="footer__bottom">
       <p class="footer__copy">Copyright ©2026 Kona SDA Church
-        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445"></span></p>
+        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445" loading="lazy"></span></p>
       <p class="footer__made">Made with <span aria-label="amor"><a class="remove-decoration" href="https://www.leonoliver.com/" target="_blank" rel="noopener">💛💙❤️</a></span></p>
     </div>
   </div>
@@ -100,56 +124,19 @@
   </div>
   <ul class="menu__links">
     <li><a href="index.html">HOME</a></li>
-    <li><a href="about.html">ABOUT US</a>
-      <ul class="menu__sub">
+    <li class="menu__has-sub"><a href="about.html" data-submenu-toggle aria-expanded="false" aria-controls="menu-sub-about">ABOUT US <svg class="menu__caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+      <ul class="menu__sub" id="menu-sub-about">
         <li><a href="about.html">Who We Are</a></li>
         <li><a href="meet-our-pastor.html" aria-current="page">Meet Our Pastor</a></li>
       </ul>
     </li>
-    <li><a href="index.html#beliefs">OUR BELIEF</a></li>
-    <li><a href="#">CALENDAR</a></li>
+    <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+    <li><a href="calendar.html">CALENDAR</a></li>
     <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>
 
-<script>
-  // Menú móvil
-  const menu = document.getElementById('menu');
-  const openBtn = document.querySelector('.nav .nav__toggle');
-  const closeBtn = menu.querySelector('[data-close]');
-  const setMenu = (open) => {
-    menu.classList.toggle('is-open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    openBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    (open ? closeBtn : openBtn).focus();
-  };
-  openBtn.addEventListener('click', () => setMenu(true));
-  closeBtn.addEventListener('click', () => setMenu(false));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
-</script>
-<script>
-  // ---------- Menú fijo en escritorio (igual que en index.html) ----------
-  (() => {
-    const nav  = document.querySelector('.site-header .nav');
-    const hero = document.querySelector('.page-hero');
-    if (!nav || !hero) return;
-    const desktop = matchMedia('(min-width: 900px)');
-    let stuck = false, ticking = false;
-    const check = () => {
-      ticking = false;
-      // se fija cuando el banner casi ha salido de la pantalla
-      const on = desktop.matches && hero.getBoundingClientRect().bottom < nav.offsetHeight;
-      if (on !== stuck) { stuck = on; nav.classList.toggle('nav--stuck', on); }
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } };
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-    desktop.addEventListener('change', request);
-    check();
-  })();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>

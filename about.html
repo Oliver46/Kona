@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Us | Kona Seventh-day Adventist Church</title>
 <meta name="description" content="A Christ-centered, Bible-based church family in Kona, Hawaii, sharing God’s love and hope with our community.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500&amp;display=swap">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-about">
+<body class="page-about page-editorial">
 
 <!-- =================== HEADER =================== -->
 <header class="site-header">
@@ -24,8 +22,8 @@
           <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
         </ul>
       </li>
-      <li><a href="index.html#beliefs">OUR BELIEF</a></li>
-      <li><a href="#">CALENDAR</a></li>
+      <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+      <li><a href="calendar.html">CALENDAR</a></li>
       <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
     </ul>
     <a href="contact.html" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
@@ -41,25 +39,30 @@
   <section class="page-hero" aria-labelledby="page-title">
     <img class="page-hero__img" src="img/beach2.webp" alt="" aria-hidden="true" fetchpriority="high">
     <h1 id="page-title">About Us</h1>
+    <a class="scroll-cue" href="#intro">
+      <span>Scroll to explore</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
   </section>
 
-  <!-- Intro: foto + titular -->
-  <section class="about-intro">
-    <div class="about-intro__grid">
-      <figure class="about-intro__media">
-        <img src="img/kona-church.jpeg" alt="Exterior of the Kona Seventh-day Adventist Church building surrounded by green lawn and tropical trees" width="1264" height="848" loading="lazy" decoding="async">
+  <!-- Intro: foto + titular (mismo diseño que Our Beliefs) -->
+  <section class="bl-intro" id="intro" aria-labelledby="intro-title">
+    <div class="bl-intro__grid">
+      <figure class="bl-intro__media">
+        <img src="img/kona-church.webp" alt="Exterior of the Kona Seventh-day Adventist Church building surrounded by green lawn and tropical trees" width="1264" height="848" loading="lazy" decoding="async">
       </figure>
-      <div class="about-intro__text">
+      <div class="bl-intro__text">
         <p class="eyebrow">Welcome to our ‘Ohana</p>
-        <h2>We are a Christ-centered, Bible-based church family in Kona, sharing God’s love and hope with our community.</h2>
-        <p class="lead">Wherever you are on your faith journey, you are welcome here.</p>
+        <h2 id="intro-title" class="bl-intro__statement">We are a Christ-centered, Bible-based church family in Kona, sharing God’s love and hope with our community.</h2>
+        <p>Wherever you are on your faith journey, you are welcome here.</p>
       </div>
     </div>
   </section>
 
-  <!-- Cuerpo + pilares -->
-  <section class="about-body" aria-labelledby="who-title">
-    <div class="about-body__inner">
+  <!-- Quiénes somos + pilares (franja verde-océano, como "Our Core Beliefs") -->
+  <section class="bl-core about-who" aria-labelledby="who-title">
+    <svg class="bl-core__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 48c160-32 320-40 480-24s320 48 480 40 320-48 480-48V80H0z"/></svg>
+    <div class="about-who__inner">
       <h2 id="who-title">Who We Are</h2>
       <p>The Seventh-day Adventist Church is a mainstream Protestant movement with more than 19 million members worldwide, including over one million in North America. Our mission is simple: to help people experience abundant life today and prepare for the soon return of Jesus Christ.</p>
       <p>Adventists joyfully look forward to that promised day when Jesus will come again, trusting His Word and living in hope.</p>
@@ -81,31 +84,52 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__cols">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About Us</a></li>
-        <li><a href="index.html#beliefs">Our Beliefs</a></li>
-        <li><a href="index.html#services">Calendar</a></li>
-        <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
-        <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
-        <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
-        <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
-        <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
-        <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
-      </ul>
-      <div class="footer__contact">
-        <p><span class="footer__label">Address:</span><br>82-1013 Kinue Rd, Captain Cook<br>HI 96704</p>
-        <p><span class="footer__label">Phone:</span><br><a href="tel:+18083233317">(808) 323-3317</a></p>
+    <div class="footer__brand">
+      <a href="index.html" class="footer__logo"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445" loading="lazy"></a>
+      <p>Jesus. Aloha. ʻOhana.<br>A Christ-centered church family in Kona, Hawaiʻi.</p>
+    </div>
+
+    <div class="footer__grid">
+      <nav aria-labelledby="f-church">
+        <h2 class="footer__heading" id="f-church">Church</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About Us</a></li>
+          <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
+          <li><a href="our-beliefs.html">Our Beliefs</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="f-resources">
+        <h2 class="footer__heading" id="f-resources">Ministries &amp; Resources</h2>
+        <ul>
+          <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
+          <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
+          <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
+          <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
+          <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
+          <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
+          <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="footer__heading">Visit</h2>
+        <address>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=82-1013+Kinue+Rd%2C+Captain+Cook%2C+HI+96704" target="_blank" rel="noopener">82-1013 Kinue Rd, Captain Cook<br>HI 96704</a>
+        </address>
+        <p class="footer__note">Saturdays<br>Sabbath School 9:30 am<br>Worship Service 10:45 am</p>
+      </div>
+      <div>
+        <h2 class="footer__heading">Contact</h2>
+        <p><a href="tel:+18083233317">(808) 323-3317</a></p>
+        <p class="footer__note">Text <strong>JOIN</strong> or <strong>GUEST</strong> to<br><a href="sms:+18333709973">833-370-9973</a> for SMS updates</p>
       </div>
     </div>
+
     <div class="footer__bottom">
       <p class="footer__copy">Copyright ©2026 Kona SDA Church
-        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445"></span></p>
+        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445" loading="lazy"></span></p>
       <p class="footer__made">Made with <span aria-label="amor"><a class="remove-decoration" href="https://www.leonoliver.com/" target="_blank" rel="noopener">💛💙❤️</a></span></p>
     </div>
   </div>
@@ -120,56 +144,19 @@
   </div>
   <ul class="menu__links">
     <li><a href="index.html">HOME</a></li>
-    <li><a href="about.html">ABOUT US</a>
-      <ul class="menu__sub">
+    <li class="menu__has-sub"><a href="about.html" data-submenu-toggle aria-expanded="false" aria-controls="menu-sub-about">ABOUT US <svg class="menu__caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+      <ul class="menu__sub" id="menu-sub-about">
         <li><a href="about.html" aria-current="page">Who We Are</a></li>
         <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
       </ul>
     </li>
-    <li><a href="index.html#beliefs">OUR BELIEF</a></li>
-    <li><a href="#">CALENDAR</a></li>
+    <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+    <li><a href="calendar.html">CALENDAR</a></li>
     <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>
 
-<script>
-  // Menú móvil
-  const menu = document.getElementById('menu');
-  const openBtn = document.querySelector('.nav .nav__toggle');
-  const closeBtn = menu.querySelector('[data-close]');
-  const setMenu = (open) => {
-    menu.classList.toggle('is-open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    openBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    (open ? closeBtn : openBtn).focus();
-  };
-  openBtn.addEventListener('click', () => setMenu(true));
-  closeBtn.addEventListener('click', () => setMenu(false));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
-</script>
-<script>
-  // ---------- Menú fijo en escritorio (igual que en index.html) ----------
-  (() => {
-    const nav  = document.querySelector('.site-header .nav');
-    const hero = document.querySelector('.page-hero');
-    if (!nav || !hero) return;
-    const desktop = matchMedia('(min-width: 900px)');
-    let stuck = false, ticking = false;
-    const check = () => {
-      ticking = false;
-      // se fija cuando el banner casi ha salido de la pantalla
-      const on = desktop.matches && hero.getBoundingClientRect().bottom < nav.offsetHeight;
-      if (on !== stuck) { stuck = on; nav.classList.toggle('nav--stuck', on); }
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } };
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-    desktop.addEventListener('change', request);
-    check();
-  })();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>

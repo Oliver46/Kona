@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kona Seventh-day Adventist Church</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500&amp;display=swap">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -19,13 +17,19 @@
   <header class="nav">
     <a href="#" class="brand"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church" width="1500" height="445"></a>
     <ul class="nav__links">
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">ABOUT US</a></li>
-      <li><a href="#">OUR BELIEF</a></li>
-      <li><a href="#">CALENDAR</a></li>
+      <li><a href="index.html">HOME</a></li>
+      <li class="nav__item has-sub">
+        <a href="about.html" aria-haspopup="true">ABOUT US <svg class="nav__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+        <ul class="submenu" aria-label="About Us">
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
+        </ul>
+      </li>
+      <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+      <li><a href="calendar.html">CALENDAR</a></li>
       <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
     </ul>
-    <a href="#" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
+    <a href="contact.html" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
     <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
     </button>
@@ -40,12 +44,15 @@
     </div>
   </div>
 
-  <span class="scroll">SCROLL DOWN</span>
+  <a class="scroll-cue" href="#about">
+    <span>Scroll to explore</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
 </section>
 </div>
 
 <!-- =================== SECCIONES DEBAJO DEL HERO =================== -->
-<main class="site">
+<main class="site page-editorial">
 
   <!-- About Us -->
   <section class="block" id="about" aria-labelledby="about-title">
@@ -57,7 +64,7 @@
 
   <!-- Parallax: Church Services -->
   <section class="parallax parallax--right" id="services" aria-labelledby="services-title">
-    <img class="parallax__img" src="img/keahole-point.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="parallax__img" src="img/keahole-point.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="parallax__box">
       <h2 id="services-title">Church Services &amp; Event Calendar</h2>
       <dl class="schedule">
@@ -70,17 +77,17 @@
   </section>
 
   <!-- Our Beliefs -->
-  <section class="block" id="beliefs" aria-labelledby="beliefs-title">
+  <section class="block block--sea" id="beliefs" aria-labelledby="beliefs-title">
     <div class="block__inner">
       <h2 id="beliefs-title">Our Beliefs</h2>
       <p>We believe in a God of love who calls us to live with hope, serve our neighbors, and prepare for Jesus’ return</p>
-      <a href="#" class="btn-outline">Learn More</a>
+      <a href="our-beliefs.html" class="btn btn--ocean-outline btn--lg">Learn More</a>
     </div>
   </section>
 
   <!-- Parallax: KACS -->
   <section class="parallax parallax--left" id="kacs" aria-labelledby="kacs-title">
-    <img class="parallax__img" src="img/kona-sda-school.jpeg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="parallax__img" src="img/kona-sda-school.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="parallax__box">
       <h2 id="kacs-title">Kona Adventist Christian School (KACS)</h2>
       <p>At Kona Adventist Christian School, we believe true education nurtures the whole child – mind, body, and spirit – within a safe and supportive Christian environment. Serving students from kindergarten through 8th grade, our small, Christ-centered school in South Kona provides a safe, family-like environment where faith, creativity, curiosity, and character are all part of the learning journey.</p>
@@ -94,7 +101,6 @@
       <h2 id="mission-title">Our Mission</h2>
       <p>Our mission is to share God’s love in Kona through worship, fellowship, and service that reflects the hope of the everlasting gospel. This mission comes to life through ministries of our church:</p>
     </div>
-    <!-- Imágenes pendientes: sustituye cada <div class="ministry__img ministry__img--pending"> por <img class="ministry__img" src="img/..." alt="..."> -->
     <ul class="ministries">
       <li class="ministry">
         <img class="ministry__img" src="img/praying-hands.webp" alt="Colorful assortment of fresh tropical fruits" loading="lazy" decoding="async">
@@ -134,11 +140,11 @@
     <img class="parallax__img" src="img/beach2.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="newsletter__card">
       <span class="newsletter__icon" aria-hidden="true">
-        <svg width="26" height="34" viewBox="0 0 26 34" fill="none"><rect x="2" y="2" width="22" height="30" rx="3" stroke="currentColor" stroke-width="3"/><circle cx="13" cy="26.5" r="1.8" fill="currentColor"/></svg>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g class="newsletter__phone"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 5.5h3"/><path d="M12 18.2h.01"/></g><path class="newsletter__wave newsletter__wave--r" d="M20.3 9a4 4 0 0 1 0 6"/><path class="newsletter__wave newsletter__wave--l" d="M3.7 9a4 4 0 0 0 0 6"/></svg>
       </span>
       <h2 id="newsletter-title">Join the Kona SDA <span class="nowrap-text">e-Newsletter</span></h2>
-      <p>Text JOIN to <a href="sms:+18333709973?body=JOIN">833-370-9973</a> to receive SMS notifications for members<br>
-         Text GUEST to receive SMS notifications for guests</p>
+      <p>Text <span class="news-letter-keyword">JOIN</span> to <a href="sms:+18333709973?body=JOIN">833-370-9973</a> to receive SMS notifications for members<br>
+         Text <span class="news-letter-keyword">GUEST</span> to receive SMS notifications for guests</p>
     </div>
   </section>
 
@@ -146,31 +152,52 @@
 
 <footer class="footer">
   <div class="footer__inner">
-    <div class="footer__cols">
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#beliefs">Our Beliefs</a></li>
-        <li><a href="#services">Calendar</a></li>
-        <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
-        <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
-        <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
-        <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
-        <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
-        <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
-      </ul>
-      <div class="footer__contact">
-        <p><span class="footer__label">Address:</span><br>82-1013 Kinue Rd, Captain Cook<br>HI 96704</p>
-        <p><span class="footer__label">Phone:</span><br><a href="tel:+18083233317">(808) 323-3317</a></p>
+    <div class="footer__brand">
+      <a href="index.html" class="footer__logo"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445" loading="lazy"></a>
+      <p>Jesus. Aloha. ʻOhana.<br>A Christ-centered church family in Kona, Hawaiʻi.</p>
+    </div>
+
+    <div class="footer__grid">
+      <nav aria-labelledby="f-church">
+        <h2 class="footer__heading" id="f-church">Church</h2>
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
+          <li><a href="our-beliefs.html">Our Beliefs</a></li>
+          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="f-resources">
+        <h2 class="footer__heading" id="f-resources">Ministries &amp; Resources</h2>
+        <ul>
+          <li><a href="https://www.konaadventistschool.com/" target="_blank" rel="noopener">Kona Adventist Christian School</a></li>
+          <li><a href="http://www.campwaianae.org" target="_blank" rel="noopener">Camp Waianae</a></li>
+          <li><a href="http://www.hawaiisda.org" target="_blank" rel="noopener">Hawaii Conference</a></li>
+          <li><a href="http://www.adventist.org" target="_blank" rel="noopener">General Conference</a></li>
+          <li><a href="http://www.itiswritten.com" target="_blank" rel="noopener">It is Written</a></li>
+          <li><a href="https://egwwritings.org/" target="_blank" rel="noopener">Ellen White Writings</a></li>
+          <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">Adventist Giving</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="footer__heading">Visit</h2>
+        <address>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=82-1013+Kinue+Rd%2C+Captain+Cook%2C+HI+96704" target="_blank" rel="noopener">82-1013 Kinue Rd, Captain Cook<br>HI 96704</a>
+        </address>
+        <p class="footer__note">Saturdays<br>Sabbath School 9:30 am<br>Worship Service 10:45 am</p>
+      </div>
+      <div>
+        <h2 class="footer__heading">Contact</h2>
+        <p><a href="tel:+18083233317">(808) 323-3317</a></p>
+        <p class="footer__note">Text <strong>JOIN</strong> or <strong>GUEST</strong> to<br><a href="sms:+18333709973">833-370-9973</a> for SMS updates</p>
       </div>
     </div>
+
     <div class="footer__bottom">
       <p class="footer__copy">Copyright ©2026 Kona SDA Church
-        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445"></span></p>
+        <span class="footer__mark"><img src="img/NAD_logo.webp" alt="" width="1500" height="445" loading="lazy"></span></p>
       <p class="footer__made">Made with <span aria-label="amor"><a class="remove-decoration" href="https://www.leonoliver.com/" target="_blank" rel="noopener">💛💙❤️</a></span></p>
     </div>
   </div>
@@ -185,181 +212,19 @@
   </div>
   <ul class="menu__links">
     <li><a href="#">HOME</a></li>
-    <li><a href="#">ABOUT US</a></li>
-    <li><a href="#">OUR BELIEF</a></li>
-    <li><a href="#">CALENDAR</a></li>
+    <li class="menu__has-sub"><a href="about.html" data-submenu-toggle aria-expanded="false" aria-controls="menu-sub-about">ABOUT US <svg class="menu__caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+      <ul class="menu__sub" id="menu-sub-about">
+        <li><a href="about.html">Who We Are</a></li>
+        <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
+      </ul>
+    </li>
+    <li><a href="our-beliefs.html">OUR BELIEF</a></li>
+    <li><a href="calendar.html">CALENDAR</a></li>
     <li><a href="https://adventistgiving.org/donate" target="_blank">ADVENTIST GIVING</a></li>
   </ul>
-  <a href="#" class="btn btn--light">Contact Us</a>
+  <a href="contact.html" class="btn btn--light">Contact Us</a>
 </nav>
 
-<script>
-  // ---------- Secuencia de imágenes controlada por scroll ----------
-  (() => {
-    const FRAMES = 120;                                   // img/sequence/<set>/frame_001…120.webp
-    const wrap   = document.getElementById('hero-scroll');
-    const hero   = document.getElementById('hero');
-    const canvas = hero.querySelector('.hero__bg');
-    const ctx    = canvas.getContext('2d');
-    const set    = matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
-    const src    = i => `img/sequence/${set}/frame_${String(i + 1).padStart(3, '0')}.webp`;
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const frames = new Array(FRAMES);
-    let current = 0, target = 0, drawn = -1, raf = 0;
-
-    // Tamaño del canvas según pantalla (máx. 2x de densidad)
-    function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width  = Math.round(canvas.clientWidth  * dpr);
-      canvas.height = Math.round(canvas.clientHeight * dpr);
-      drawn = -1; draw(Math.round(current));
-    }
-
-    // Fotograma cargado más cercano al pedido
-    function nearest(i) {
-      for (let d = 0; d < FRAMES; d++) {
-        if (frames[i - d]) return frames[i - d];
-        if (frames[i + d]) return frames[i + d];
-      }
-      return null;
-    }
-
-    // Dibuja con encuadre "cover" centrado
-    function draw(i) {
-      const img = nearest(i);
-      if (!img || (i === drawn && img === frames[i])) return;
-      const cw = canvas.width, ch = canvas.height;
-      const s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-      const w = img.naturalWidth * s, h = img.naturalHeight * s;
-      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-      drawn = frames[i] ? i : -1;
-    }
-
-    // Progreso del scroll dentro del contenedor → índice de fotograma
-    function updateTarget() {
-      const range = wrap.offsetHeight - window.innerHeight;
-      const p = range > 0 ? Math.min(Math.max(-wrap.getBoundingClientRect().top / range, 0), 1) : 0;
-      target = p * (FRAMES - 1);
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
-
-    // Suavizado: el fotograma se acerca al objetivo en cada cuadro
-    function tick() {
-      current += (target - current) * 0.18;
-      if (Math.abs(target - current) < 0.05) current = target;
-      draw(Math.round(current));
-      raf = current !== target ? requestAnimationFrame(tick) : 0;
-    }
-
-    // Orden de carga: primero fotogramas repartidos, luego se rellenan huecos
-    function loadOrder() {
-      const seen = new Set(), order = [];
-      for (let step = 32; step >= 1; step /= 2)
-        for (let i = 0; i < FRAMES; i += step) if (!seen.has(i)) { seen.add(i); order.push(i); }
-      return order;
-    }
-
-    function load(i) {
-      return new Promise(res => {
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = () => { frames[i] = img; if (Math.abs(i - current) < 3 || drawn === -1) draw(Math.round(current)); res(); };
-        img.onerror = () => { if (i === 0) hero.classList.add('is-missing'); res(); };
-        img.src = src(i);
-      });
-    }
-
-    async function preload(list) {
-      let next = 0;
-      const worker = async () => { while (next < list.length) await load(list[next++]); };
-      await Promise.all(Array.from({ length: 6 }, worker));   // 6 descargas en paralelo
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    if (reduce) { load(0); return; }                         // movimiento reducido: solo el primer fotograma
-    window.addEventListener('scroll', updateTarget, { passive: true });
-    updateTarget();
-    preload(loadOrder());
-  })();
-
-  // Menú móvil
-  const menu = document.getElementById('menu');
-  const openBtn = document.querySelector('.nav .nav__toggle');
-  const closeBtn = menu.querySelector('[data-close]');
-  const setMenu = (open) => {
-    menu.classList.toggle('is-open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    openBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    (open ? closeBtn : openBtn).focus();
-  };
-  openBtn.addEventListener('click', () => setMenu(true));
-  closeBtn.addEventListener('click', () => setMenu(false));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
-</script>
-<script>
-  // ---------- Parallax de las secciones con imagen de fondo ----------
-  (() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const items = [...document.querySelectorAll('.parallax, [data-parallax]')].map(el => ({ el, img: el.querySelector('.parallax__img'), on: false }));
-    if (!items.length) return;
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const vh = window.innerHeight;
-      for (const it of items) {
-        if (!it.on) continue;
-        const r = it.el.getBoundingClientRect();
-        // -1 cuando entra por abajo, +1 cuando sale por arriba
-        const p = (vh - r.top) / (vh + r.height) * 2 - 1;
-        it.img.style.transform = `translate3d(0, ${(-p * r.height * 0.12).toFixed(1)}px, 0)`;
-      }
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    // Solo se calcula mientras la sección está en pantalla
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { items.find(i => i.el === e.target).on = e.isIntersecting; });
-      request();
-    }, { rootMargin: '100px 0px' });
-    items.forEach(i => io.observe(i.el));
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-  })();
-</script>
-<script>
-  // ---------- Menú fijo en escritorio al empezar a ver "About Us" ----------
-  (() => {
-    const nav   = document.querySelector('.hero .nav');
-    const hero  = document.getElementById('hero');
-    const wrap  = document.getElementById('hero-scroll');
-    const about = document.getElementById('about');
-    if (!nav || !about) return;
-    const desktop = matchMedia('(min-width: 900px)');
-    let stuck = false, ticking = false;
-
-    const set = (on) => {
-      if (on === stuck) return;
-      stuck = on;
-      if (on) hero.style.setProperty('--nav-h', nav.offsetHeight + 'px');  // reserva el espacio del menú
-      nav.classList.toggle('nav--stuck', on);
-      hero.classList.toggle('has-stuck-nav', on);
-      wrap.classList.toggle('has-stuck-nav', on);
-    };
-    const check = () => {
-      ticking = false;
-      set(desktop.matches && about.getBoundingClientRect().top < window.innerHeight);
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } };
-
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-    desktop.addEventListener('change', request);
-    check();
-  })();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>

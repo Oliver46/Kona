@@ -1,97 +1,197 @@
 /* =====================================================================
    Kona Seventh-day Adventist Church — estilos del sitio
+   ---------------------------------------------------------------------
+   1. Fuentes
+   2. Variables (colores, medidas)
+   3. Base
+   4. Componentes compartidos
+      4.1 Botones
+      4.2 Navegación (+ submenú, menú fijo)
+      4.3 Menú móvil
+      4.4 Títulos y etiquetas
+      4.5 Parallax
+      4.6 E-newsletter
+      4.7 Footer
+   5. Home (index.html)
+      5.1 Hero con secuencia de video
+      5.2 Secciones del home
+   6. Páginas interiores (about, meet-our-pastor, contact)
+      6.1 Base de página, header, banner y elementos comunes
+      6.2 About (estilo editorial)
+      6.3 Meet Our Pastor
+      6.4 Contact
+      6.4b Calendar
+      6.5 Estilo editorial: Our Beliefs, About, Pastor y Contact
+   7. Utilidades
+   8. Movimiento reducido
    ===================================================================== */
 
-/* Inika — alojada localmente (fonts/inika) */
-@font-face {
-  font-family: "Inika";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/inika/inika-latin-400-normal.woff2") format("woff2"),
-       url("../fonts/inika/inika-latin-400-normal.woff") format("woff");
-}
 
+/* =====================================================================
+   1. FUENTES (alojadas localmente en /fonts)
+   ===================================================================== */
 @font-face {
-  font-family: "Noto Serif";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
+  font-family: "Noto Serif"; font-style: normal; font-weight: 400; font-display: swap;
   src: url("../fonts/noto-serif/noto-serif-latin-400-normal.woff2") format("woff2"),
        url("../fonts/noto-serif/noto-serif-latin-400-normal.woff") format("woff");
 }
+@font-face {
+  font-family: "Noto Serif"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/noto-serif/noto-serif-latin-600-normal.woff2") format("woff2"),
+       url("../fonts/noto-serif/noto-serif-latin-600-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Serif"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/noto-serif/noto-serif-latin-700-normal.woff2") format("woff2"),
+       url("../fonts/noto-serif/noto-serif-latin-700-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Serif"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/noto-serif/noto-serif-latin-400-italic.woff2") format("woff2"),
+       url("../fonts/noto-serif/noto-serif-latin-400-italic.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/inter/inter-latin-400-normal.woff2") format("woff2"),
+       url("../fonts/inter/inter-latin-400-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("../fonts/inter/inter-latin-500-normal.woff2") format("woff2"),
+       url("../fonts/inter/inter-latin-500-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/inter/inter-latin-600-normal.woff2") format("woff2"),
+       url("../fonts/inter/inter-latin-600-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/noto-sans/noto-sans-latin-400-normal.woff2") format("woff2"),
+       url("../fonts/noto-sans/noto-sans-latin-400-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/noto-sans/noto-sans-latin-600-normal.woff2") format("woff2"),
+       url("../fonts/noto-sans/noto-sans-latin-600-normal.woff") format("woff");
+}
+@font-face {
+  font-family: "Noto Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/noto-sans/noto-sans-latin-700-normal.woff2") format("woff2"),
+       url("../fonts/noto-sans/noto-sans-latin-700-normal.woff") format("woff");
+}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* =====================================================================
+   2. VARIABLES
+   ===================================================================== */
 :root {
+  /* Colores de marca */
+  --ocean: #003F6E;                    /* azul océano: footer, títulos y acentos */
+
+  /* Texto */
   --white: #fff;
-  --white-75: rgba(255,255,255, 1);
+  --white-75: rgba(255,255,255, 1);    /* texto claro del menú y del hero */
+  --charcoal: #333a40;                 /* texto de las páginas interiores */
+  --muted: #4a5568;                    /* texto secundario (newsletter) */
+
+  /* Superficies y bordes */
+  --line: #e5e7eb;
   --glass: rgba(255,255,255,.12);
   --glass-border: rgba(255,255,255,1);
+  --dark-glass: rgba(10, 14, 20, .55); /* fondo del menú fijo */
+  --koa: #8a5328;                      /* acento cálido (madera koa): etiquetas y números — AA sobre blanco */
+  --koa-light: #f3d3b0;                /* arena cálida para textos sobre fondos oscuros */
+  --sea: #eef4f3;                      /* fondo suave verde-océano */
+  --deep: #0a2233;                     /* azul noche (sección de énfasis) */
+
+  /* Tipografía */
+  --font-sans: "Noto Sans", system-ui, sans-serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+  --serif: "Noto Serif", Georgia, serif;  /* títulos de las páginas editoriales */
+  /* Roles de texto: Noto Serif (todos los títulos: hero, banners y secciones) ·
+     Noto Sans (texto y etiquetas) · Inter (menú y botones) */
+  --text-size: 18px;                   /* párrafos de lectura */
+  --text-leading: 1.75;
+  --on-dark: rgba(255,255,255,.92);    /* párrafos sobre fondos oscuros */
+
+  /* Medidas */
   --gutter: clamp(24px, 4vw, 48px);
+  --radius-card: 14px;
+  --wrap: 1160px;                      /* ancho máximo del contenido */
+  --measure: 60ch;                     /* ancho cómodo de lectura */
 }
+
+
+/* =====================================================================
+   3. BASE
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #0b0b0c; }
-body { font-family: "Inter", system-ui, sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-ui); color: var(--white); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
+html { scroll-behavior: smooth; }
+main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título al saltar a una sección */
 :focus-visible { outline: 2px solid var(--white); outline-offset: 3px; border-radius: 999px; }
 
-/* ---------- HERO ---------- */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;          /* crece si el contenido lo necesita */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  isolation: isolate;
-}
-/* Contenedor alto: el scroll dentro de él recorre la secuencia */
-.hero-scroll { position: relative; height: 250vh; }
-.hero-scroll .hero { position: sticky; top: 0; }
-.hero__bg {
-  position: absolute; inset: 0; z-index: -2;
-  width: 100%; height: 100%; display: block;
-  /* primer fotograma como póster mientras carga la secuencia */
-  background: #0b0b0c url("../img/sequence/desktop/frame_001.webp") center / cover no-repeat;
-}
-@media (max-width: 767px) {
-  .hero__bg { background-image: url("../img/sequence/mobile/frame_001.webp"); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-scroll { height: auto; }
-  .hero-scroll .hero { position: relative; }
-}
-.hero__overlay { position: absolute; inset: 0; z-index: -1; background: rgba(0,0,0,.2); }
-.hero__missing {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  z-index: -1; display: none;
-  font-size: 13px; color: var(--white-75);
-  border: 1px dashed var(--glass-border); border-radius: 12px; padding: 10px 14px;
-}
-.hero.is-missing .hero__missing { display: block; top: auto; bottom: 72px; transform: translateX(-50%); }
 
-/* ---------- NAV ---------- */
+/* =====================================================================
+   4. COMPONENTES COMPARTIDOS
+   ===================================================================== */
+
+/* ---------- 4.1 Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 48px; padding: 0 28px; border-radius: 6px;
+  font-family: var(--font-ui); font-size: 15px; font-weight: 500;
+  white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn--light { background: var(--white); color: #111; }
+.btn--glass {
+  background: var(--glass); color: var(--white);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.btn--glass:hover { background: var(--white); color: #111; }   /* se rellena como BULLETIN */
+.btn--sm { height: 40px; padding: 0 20px; font-size: 14px; }
+.btn--lg { height: 52px; padding: 0 26px; gap: 10px; font-weight: 600; }   /* más alto, para llamadas a la acción */
+/* Botones azul océano para fondos claros */
+.btn--ocean { background: var(--ocean); color: #fff; border: 1.5px solid var(--ocean); }
+.btn--ocean:hover { background: #00548f; border-color: #00548f; }
+.btn--ocean-outline { background: transparent; color: var(--ocean); border: 1.5px solid var(--ocean); }
+.btn--ocean-outline:hover { background: var(--ocean); color: #fff; }
+
+
+/* ---------- 4.2 Navegación ---------- */
 .nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--gutter) var(--gutter) 0;
 }
 .brand { display: inline-flex; align-items: center; border-radius: 8px; }
 .brand img { display: block; height: 70px; width: auto; }
+/* iPad Pro (y otras tabletas táctiles): logo más pequeño.
+   Ancho de tableta + pantalla táctil, para no afectar a portátiles del mismo ancho. */
+@media (min-width: 768px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+  .brand img { height: 50px; }
+}
+
 .nav__links { display: none; gap: 36px; list-style: none; font-size: 14px; }
+.nav__links > li { position: relative; }
 .nav__links a {
-  display: inline-block;              /* necesario para que transform funcione en el enlace */
+  display: inline-block;               /* necesario para que transform funcione en el enlace */
   color: var(--white-75);
   transition: color .2s, transform .2s ease;
 }
 .nav__links a:hover,
 .nav__links a:focus-visible { color: var(--white); transform: translateY(-3px); }
-@media (prefers-reduced-motion: reduce) {
-  .nav__links a:hover, .nav__links a:focus-visible { transform: none; }
-}
+
 .nav .nav__cta { display: none; }
 .nav__toggle {
   background: none; border: 0; color: var(--white); cursor: pointer;
   width: 44px; height: 44px; display: grid; place-items: center; border-radius: 999px;
 }
+
 @media (min-width: 900px) {
   /* 3 columnas: logo | menú centrado | botón */
   .nav { display: grid; grid-template-columns: 1fr auto 1fr; }
@@ -102,100 +202,44 @@ a { color: inherit; text-decoration: none; }
   .nav__toggle { display: none; }
 }
 
-/* ---------- BOTONES ---------- */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  height: 48px; padding: 0 28px; border-radius: 999px;
-  font-family: "Inter", sans-serif; font-size: 15px; font-weight: 500;
-  transition: transform .2s, background .2s;
-  white-space: nowrap;
-}
-.btn:hover { transform: translateY(-3px); }
-.btn--light { background: var(--white); color: #111; }
-.btn--glass {
-  background: var(--glass); color: var(--white);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-}
-.btn--glass:hover { background: rgba(255,255,255,.2); }
-.btn--sm { height: 40px; padding: 0 20px; font-size: 14px; }
+/* Submenú (About Us) */
+.nav__links .has-sub > a { display: inline-flex; align-items: center; gap: 6px; }
+.nav__caret { transition: transform .2s ease; }
+.has-sub:hover .nav__caret,
+.has-sub:focus-within .nav__caret { transform: rotate(180deg); }
 
-/* ---------- CONTENIDO ---------- */
-.hero__content {
-  flex: 1;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 48px var(--gutter);
+.submenu {
+  position: absolute; top: calc(100% + 14px); left: 50%; z-index: 50;
+  min-width: 210px; list-style: none; padding: 8px;
+  background: rgba(10, 14, 20, .82);
+  backdrop-filter: blur(12px) saturate(140%); -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+  opacity: 0; visibility: hidden; transform: translate(-50%, 8px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
 }
-h1 {
-  font-family: "Inika", Georgia, serif; font-weight: 400;
-  font-size: clamp(32px, 10.2vw, 40px); line-height: 1.02; letter-spacing: -.01em;
-  text-wrap: balance;
-  max-width: 1024px;
-  text-shadow: 0 0 32px rgba(255,255,255,.35), 0 0 80px rgba(255,255,255,.18);
-  overflow-wrap: break-word;
+.submenu::before {                     /* puente invisible para no perder el hover */
+  content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px;
 }
-h1 .line { display: block; }
-h1 .nowrap { white-space: nowrap; }
-@media (min-width: 640px)  { h1 { font-size: clamp(56px, 9vw, 80px); } }
-@media (min-width: 1024px) { h1 { font-size: 96px; } }
+.has-sub:hover .submenu,
+.has-sub:focus-within .submenu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
 
-.lead {
-  margin-top: 28px; max-width: 576px;
-  font-size: 16px; line-height: 1.6; font-weight: 300; color: var(--white-75);
+.nav__links .submenu a {
+  display: block; padding: 10px 14px; border-radius: 8px; white-space: nowrap;
+  font-size: 14px; letter-spacing: .02em; color: rgba(255, 255, 255, .85);
 }
-@media (min-width: 640px) { .lead { font-size: 18px; } }
+.nav__links .submenu a:hover,
+.nav__links .submenu a:focus-visible { background: rgba(255, 255, 255, .1); color: #fff; transform: none; }
+.nav__links .submenu a[aria-current="page"] { color: #fff; font-weight: 600; }
 
-.hero__content p {
-  margin-top: 28px;
-  font-family: "Noto Serif", Georgia, serif; font-weight: 400;
-  font-size: 30px; line-height: 1.35;
-  color: var(--white);   /* blanco sólido, sin opacidad */
-}
-
-.actions { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; }
-@media (min-width: 640px) { .actions { flex-direction: row; justify-content: center; width: auto; max-width: none; } }
-
-.scroll {
-  align-self: center; padding-bottom: var(--gutter);
-  font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--white-75);
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-}
-.scroll::after { content: ""; width: 1px; height: 32px; background: linear-gradient(var(--white-75), transparent); }
-
-/* ---------- MENÚ MÓVIL ---------- */
-.menu {
-  position: fixed; inset: 0; z-index: 50;
-  background: rgba(0,0,0,.72);
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  display: flex; flex-direction: column;
-  padding: var(--gutter);
-  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
-}
-.menu.is-open { opacity: 1; visibility: visible; }
-.menu__top { display: flex; justify-content: space-between; align-items: center; }
-.menu__links { list-style: none; margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
-.menu__links a { font-family: "Instrument Serif", serif; font-size: 40px; line-height: 1; }
-.menu .btn { margin-top: auto; }
-
-/* ---------- ENTRADA ---------- */
-.reveal { opacity: 0; transform: translateY(20px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
-.reveal:nth-child(2) { animation-delay: .08s; }
-.reveal:nth-child(3) { animation-delay: .16s; }
-@keyframes rise { to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { animation: none; opacity: 1; transform: none; }
-  .menu, .btn { transition: none; }
-}
-
-/* ---------- MENÚ FIJO EN ESCRITORIO (al llegar a About Us) ---------- */
+/* Menú fijo en escritorio (lo activa el JS al hacer scroll) */
 @media (min-width: 900px) {
   .hero-scroll.has-stuck-nav { z-index: 30; }
   .hero.has-stuck-nav { padding-top: var(--nav-h, 0px); }   /* evita salto del contenido */
   .nav.nav--stuck {
     position: fixed; top: 0; left: 0; right: 0; z-index: 40;
     padding-top: 12px; padding-bottom: 12px;
-    background: rgba(10, 14, 20, .55);
+    background: var(--dark-glass);
     backdrop-filter: blur(12px) saturate(140%);
     -webkit-backdrop-filter: blur(12px) saturate(140%);
     box-shadow: 0 1px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.18);
@@ -204,153 +248,696 @@ h1 .nowrap { white-space: nowrap; }
   .nav.nav--stuck .brand img { height: 52px; transition: height .25s; }
 }
 @keyframes navIn { from { transform: translateY(-100%); } to { transform: none; } }
-@media (prefers-reduced-motion: reduce) { .nav.nav--stuck { animation: none; } }
 
-/* =====================================================================
-   SECCIONES DEBAJO DEL HERO (estilos independientes del hero)
-   ===================================================================== */
-@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("../fonts/noto-sans/noto-sans-latin-400-normal.woff2") format("woff2"), url("../fonts/noto-sans/noto-sans-latin-400-normal.woff") format("woff"); }
-@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("../fonts/noto-sans/noto-sans-latin-600-normal.woff2") format("woff2"), url("../fonts/noto-sans/noto-sans-latin-600-normal.woff") format("woff"); }
-@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("../fonts/noto-sans/noto-sans-latin-700-normal.woff2") format("woff2"), url("../fonts/noto-sans/noto-sans-latin-700-normal.woff") format("woff"); }
 
-.site {
-  --accent: #4175fc;
-  --ink: #111;
-  --muted: #4a5568;
-  --line: #e5e7eb;
-  font-family: "Noto Sans", system-ui, sans-serif;
-  color: var(--ink);
-  background: #fff;
+/* ---------- 4.3 Menú móvil ---------- */
+.menu {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; flex-direction: column;
+  padding: var(--gutter);
+  overflow-y: auto;
+  color: #fff;                         /* blanco también en páginas con texto oscuro */
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
 }
-.site :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.menu.is-open { opacity: 1; visibility: visible; }
+.menu__top { display: flex; justify-content: space-between; align-items: center; }
+.menu__links { list-style: none; margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
+.menu__links a { font-family: var(--serif); font-size: 32px; line-height: 1.1; }
+.menu .btn { margin-top: auto; }
 
-/* Bloques de texto centrados */
-.block { padding: clamp(40px, 6vw, 72px) 24px; text-align: center; }
-.block__inner { max-width: 760px; margin: 0 auto; }
-.block h2 {
-  font-size: clamp(26px, 3.2vw, 34px); font-weight: 400; line-height: 1.2; color: #000;
-  display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+/* Submenú "About Us": oculto hasta pasar el cursor (o tocar) ABOUT US */
+.menu__has-sub > a { display: inline-flex; align-items: center; gap: 10px; }
+.menu__caret { transition: transform .2s ease; }
+.menu__sub {
+  list-style: none; margin: 12px 0 2px 4px; padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, .3);
+  display: none; flex-direction: column; gap: 10px;
 }
-.block h2::after { content: ""; width: 64px; height: 3px; border-radius: 2px; background: var(--accent); }
-.block p { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.65; margin-top: 20px; }
-.block h2 + p { margin-top: 24px; }
+.menu__has-sub.is-open > .menu__sub { display: flex; }
+.menu__has-sub.is-open .menu__caret { transform: rotate(180deg); }
+@media (hover: hover) {                /* solo con ratón; en pantallas táctiles se abre al tocar */
+  .menu__has-sub:hover > .menu__sub { display: flex; }
+  .menu__has-sub:hover .menu__caret { transform: rotate(180deg); }
+}
+.menu__links .menu__sub a {
+  font-family: var(--font-ui); font-size: 18px; line-height: 1.3;
+  color: rgba(255, 255, 255, .8);
+}
+.menu__links .menu__sub a[aria-current="page"] { color: #fff; font-weight: 500; }
 
-/* Botón contorno azul */
-.btn-outline {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 44px; padding: 0 22px; margin-top: 24px;
-  border: 1.5px solid var(--accent); border-radius: 6px;
-  color: var(--accent); background: #fff;
-  font-size: 14px; font-weight: 600; letter-spacing: .02em;
-  transition: background .2s, color .2s;
+
+/* ---------- Indicador "Scroll to explore" (abajo del hero en todas las páginas) ---------- */
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 2;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 8px 12px; border-radius: 8px;
+  color: rgba(255,255,255,.9); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+  white-space: nowrap;
 }
-.btn-outline:hover { background: var(--accent); color: #fff; }
-.btn-row { text-align: center; padding: 28px 24px 0; }
-.btn-row .btn-outline { margin-top: 0; }
+.scroll-cue:hover { color: #fff; }
+.scroll-cue svg { animation: cue-float 2.4s ease-in-out infinite; }
+@keyframes cue-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+/* ---------- 4.4 Títulos y etiquetas ---------- */
+/* Etiqueta pequeña en mayúsculas: .eyebrow y los elementos que comparten su estilo */
+.eyebrow, .schedule dt, .contact-list h3, .footer .footer__heading, .belief__tag, .bl-verse cite {
+  font-family: var(--font-sans); font-size: 13px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+.eyebrow, .contact-list h3, .bl-verse cite { color: var(--koa); }
+.eyebrow--light, .schedule dt, .footer .footer__heading, .bl-verse--light cite { color: var(--koa-light); }   /* sobre fondos oscuros */
+
+/* Adorno: línea fina con un punto en el centro (también bajo los títulos del home) */
+.bl-ornament, .block h2::after {
+  display: inline-block; width: 104px; height: 8px; opacity: .85;
+  background:
+    radial-gradient(circle, var(--koa) 3px, transparent 3.5px) center / 8px 8px no-repeat,
+    linear-gradient(var(--koa), var(--koa)) left center / 40px 1px no-repeat,
+    linear-gradient(var(--koa), var(--koa)) right center / 40px 1px no-repeat;
+}
+
+
+/* ---------- 4.5 Secciones con foto de fondo ---------- */
+/* Contenedor: la foto y la capa de color quedan detrás del contenido */
+.hero, .parallax, .newsletter, .page-hero, .belief--salvation, .bl-living {
+  position: relative; overflow: hidden; isolation: isolate;
+}
+/* Foto que cubre toda la sección */
+.page-hero__img, .belief--salvation__bg, .bl-living__bg {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Capa de color entre la foto y el texto (cada sección define su "background") */
+.newsletter::after, .page-hero::after, .belief--salvation::before, .bl-living::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+}
+/* Foco blanco en las secciones oscuras dentro del contenido */
+.bl-28 :focus-visible, .bl-living :focus-visible { outline-color: #fff; }
 
 /* Parallax */
 .parallax {
-  position: relative; overflow: hidden; isolation: isolate;
   min-height: clamp(460px, 62vh, 620px);
   display: flex; align-items: center;
   padding: 48px clamp(16px, 5vw, 64px);
 }
-.parallax__img {
+.parallax__img {                       /* también la usa el e-newsletter (data-parallax) */
   position: absolute; left: 0; right: 0; top: -15%; height: 130%; z-index: -1;
   width: 100%; object-fit: cover; object-position: center;
   will-change: transform;
 }
 .parallax__box {
-  max-width: 520px; width: 100%;
-  background: rgba(12,12,12,.72);
+  max-width: 540px; width: 100%;
+  background: rgba(10, 34, 51, .82);       /* --deep translúcido */
   backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
-  color: #fff; padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--radius-card);
+  color: #fff; padding: clamp(28px, 3.4vw, 44px);
 }
 .parallax--right { justify-content: flex-end; }
 .parallax--right .parallax__box { margin-right: clamp(0px, 8vw, 140px); }
-.parallax--left .parallax__box { margin-left: clamp(0px, 8vw, 140px); }
-.parallax__box h2 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; line-height: 1.15; }
+.parallax--left  .parallax__box { margin-left:  clamp(0px, 8vw, 140px); }
+.parallax__box h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.15; }
+.site .parallax__box h2 { color: #fff; }
 .parallax--right h2 { text-align: center; }
-.parallax__box p { font-size: 15px; line-height: 1.7; margin-top: 16px; color: rgba(255,255,255,.92); }
+.parallax__box p { margin-top: 18px; color: var(--on-dark); }
 .parallax__btn { margin-top: 24px; }
-.schedule { margin-top: 20px; font-size: 15px; line-height: 1.7; }
-.schedule dt { font-weight: 700; font-size: 17px; }
+
+.schedule { margin-top: 22px; font-size: var(--text-size); line-height: var(--text-leading); color: var(--on-dark); }
+.schedule dt { margin-bottom: 4px; }   /* estilo de etiqueta en 4.4 */
 .schedule dd { margin: 0; }
+
 @media (max-width: 767px) {
   .parallax { justify-content: center; }
   .parallax .parallax__box { margin: 0; }
 }
 
-/* Our Mission */
+
+/* ---------- 4.6 E-newsletter (home y contact) ---------- */
+.newsletter {
+  padding: 96px 16px 104px;
+  background: #0f3a66;                                        /* color mientras carga la imagen */
+}
+.newsletter::after { background: rgba(10, 40, 75, .25); }   /* capa suave para que la tarjeta resalte */
+.newsletter__card {
+  position: relative; max-width: 900px; margin: 0 auto; text-align: center;
+  background: #fff;
+  border: 1px solid var(--line); border-radius: var(--radius-card);
+  box-shadow: 0 18px 48px rgba(10, 30, 60, .28);
+  padding: 64px 24px 44px;
+}
+.newsletter__icon {                    /* círculo como los iconos de contact.html */
+  position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
+  width: 76px; height: 76px; border-radius: 50%;
+  background: var(--sea); box-shadow: inset 0 0 0 8px #fff;   /* aro blanco + disco sea */
+  border: 1px solid var(--line); display: grid; place-items: center; color: var(--ocean);
+  transition: background-color .3s ease, color .3s ease, scale .3s ease;
+}
+.newsletter__phone, .newsletter__wave { transform-box: fill-box; transform-origin: center; }
+.newsletter__wave { opacity: 0; }
+/* Hover: el círculo se llena de azul, el teléfono "suena" y aparecen ondas */
+.newsletter__icon:hover { background-color: var(--ocean); color: #fff; scale: 1.06; }
+.newsletter__icon:hover .newsletter__phone { animation: nl-ring .9s ease-in-out; }
+.newsletter__icon:hover .newsletter__wave--r { --dx: 2px;  animation: nl-wave 1.2s ease-out .15s infinite; }
+.newsletter__icon:hover .newsletter__wave--l { --dx: -2px; animation: nl-wave 1.2s ease-out .15s infinite; }
+@keyframes nl-ring {
+  0%, 100% { rotate: 0deg; }
+  12% { rotate: -14deg; } 26% { rotate: 12deg; } 40% { rotate: -9deg; }
+  54% { rotate: 6deg; }   68% { rotate: -3deg; }
+}
+@keyframes nl-wave {
+  0%   { opacity: 0; translate: 0 0; scale: .7; }
+  35%  { opacity: 1; }
+  100% { opacity: 0; translate: var(--dx) 0; scale: 1.15; }
+}
+.newsletter h2 { font-family: var(--font-sans); letter-spacing: normal; font-size: clamp(20px, 2.2vw, 26px); font-weight: 400; color: #000; text-transform: uppercase; }
+.newsletter p { margin-top: 14px; color: var(--muted); font-weight: 700; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; }
+.newsletter a { color: inherit; }
+.news-letter-keyword { font-weight: 900; color: var(--ocean); }
+
+
+/* ---------- 4.7 Footer (igual en todas las páginas): marca + 4 columnas ---------- */
+.footer {
+  background: var(--ocean);
+  color: #fff; font-family: var(--font-sans); font-size: 15px; line-height: 1.8;
+  padding: 72px 24px 48px;
+}
+.footer__inner { max-width: 1160px; margin: 0 auto; }
+
+/* Marca */
+.footer__brand {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;
+  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.footer__logo { display: inline-block; border-radius: 6px; }
+.footer__logo img { display: block; height: 56px; width: auto; }
+.footer__brand p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.85); }
+
+/* Columnas: 1 en móvil, 2 en tableta, 4 en escritorio */
+.footer__grid { display: grid; gap: 36px 32px; grid-template-columns: 1fr; padding-top: 40px; }
+@media (min-width: 600px) { .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 960px) { .footer__grid { grid-template-columns: 1fr 1.4fr 1.1fr 1fr; } }
+.footer .footer__heading { margin-bottom: 14px; }   /* estilo de etiqueta en 4.4 */
+.footer ul { list-style: none; }
+.footer li + li { margin-top: 4px; }
+.footer a { color: #fff; }
+.footer a:hover { text-decoration: underline; }
+.footer a.remove-decoration,
+.footer a.remove-decoration:hover { text-decoration: none; }
+.footer address { font-style: normal; }
+.footer__note { margin-top: 12px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.8); }
+
+/* Línea final: copyright y "Made with" */
+.footer__bottom {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.45);
+}
+.footer__copy { display: flex; align-items: center; gap: 10px; }
+.footer__mark { width: 21px; height: 24px; overflow: hidden; flex: none; }
+.footer__mark img { height: 24px; width: auto; max-width: none; display: block; }
+.footer__made { font-size: 12px; }
+
+
+/* =====================================================================
+   5. HOME (index.html)
+   ===================================================================== */
+
+/* ---------- 5.1 Hero con secuencia de video ---------- */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;                  /* crece si el contenido lo necesita */
+  display: flex; flex-direction: column;
+}
+.hero-scroll { position: relative; height: 250vh; }   /* el scroll dentro recorre la secuencia */
+.hero-scroll .hero { position: sticky; top: 0; }
+
+.hero__bg {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; display: block;
+  /* primer fotograma como póster mientras carga la secuencia */
+  background: #0b0b0c url("../img/sequence/desktop/frame_001.webp") center / cover no-repeat;
+}
+@media (max-width: 767px) {
+  .hero__bg { background-image: url("../img/sequence/mobile/frame_001.webp"); }
+}
+.hero__overlay { position: absolute; inset: 0; z-index: -1; background: rgba(0,0,0,.2); }
+.hero__missing {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: -1; display: none;
+  font-size: 13px; color: var(--white-75);
+  border: 1px dashed var(--glass-border); border-radius: 12px; padding: 10px 14px;
+}
+.hero.is-missing .hero__missing { display: block; top: auto; bottom: 72px; transform: translateX(-50%); }
+
+.hero__content {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 48px var(--gutter);
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(32px, 10.2vw, 40px); line-height: 1.02; letter-spacing: -.01em;
+  text-wrap: balance; overflow-wrap: break-word;
+  max-width: 1024px;
+  text-shadow: 0 0 32px rgba(255,255,255,.35), 0 0 80px rgba(255,255,255,.18);
+}
+.hero h1 .line { display: block; }
+.hero h1 .nowrap { white-space: nowrap; }
+@media (min-width: 640px)  { .hero h1 { font-size: clamp(56px, 9vw, 80px); } }
+@media (min-width: 1024px) { .hero h1 { font-size: 96px; } }
+
+.hero__content p {
+  margin-top: 28px;
+  font-family: "Noto Serif", Georgia, serif; font-weight: 400;
+  font-size: 30px; line-height: 1.35;
+  color: var(--white);
+}
+
+.actions { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; }
+@media (min-width: 640px) { .actions { flex-direction: row; justify-content: center; width: auto; max-width: none; } }
+
+/* Entrada del contenido del hero */
+.reveal { opacity: 0; transform: translateY(20px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+.reveal:nth-child(2) { animation-delay: .08s; }
+.reveal:nth-child(3) { animation-delay: .16s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+
+/* ---------- 5.2 Secciones del home (estilo editorial: <main class="site page-editorial">) ---------- */
+/* Fondo y texto base: <main class="site"> del home y <body class="page-about"> de las interiores */
+.site, .page-about { background: #fff; color: var(--charcoal); font-family: var(--font-sans); }
+.site :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+
+/* Bloques de texto centrados (About Us, Our Beliefs, Our Mission) */
+.block { padding: clamp(64px, 8vw, 112px) 24px; text-align: center; }
+.block--sea { background: var(--sea); }
+.block__inner { max-width: 720px; margin: 0 auto; }
+.block h2 { display: inline-flex; flex-direction: column; align-items: center; gap: 18px; }
+.block h2::after { content: ""; }      /* adorno .bl-ornament (4.4) */
+.block__inner > p { max-width: var(--measure); margin: 24px auto 0; }
+.block .btn { margin-top: 32px; }
+
+/* Our Mission: tarjetas de ministerios */
 .ministries {
-  display: grid; gap: 40px 24px; grid-template-columns: 1fr;
-  max-width: 960px; margin: 48px auto 0; list-style: none;
+  display: grid; gap: 48px 32px; grid-template-columns: 1fr;
+  max-width: var(--wrap); margin: 56px auto 0; list-style: none;
 }
 @media (min-width: 560px) { .ministries { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .ministries { grid-template-columns: repeat(3, 1fr); } }
 .ministry__img {
-  aspect-ratio: 3 / 2; width: 100%; object-fit: cover; display: block;
-  background: #eef1f6; border-radius: 4px;
+  display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+  background: var(--sea);
+  border-radius: 64px 12px 64px 12px;   /* forma de hoja, como en las otras páginas */
 }
-.ministry__img--pending {
+.ministry h3 { margin-top: 22px; font-size: clamp(22px, 2vw, 24px); line-height: 1.25; }
+.ministry p { margin: 10px auto 0; max-width: 320px; font-size: 16px; line-height: 1.7; }
+
+
+/* =====================================================================
+   6. PÁGINAS INTERIORES (body.page-about)
+   ===================================================================== */
+
+/* ---------- 6.1 Base de página, header, banner y elementos comunes ---------- */
+/* Foco azul sobre fondo blanco; el header, el menú móvil y el footer usan el foco blanco global */
+.page-about main :focus-visible { outline: 2px solid var(--ocean); outline-offset: 3px; border-radius: 4px; }
+
+/* Header transparente sobre el banner; al hacer scroll pasa a .nav--stuck */
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 40; }
+
+.page-hero {
+  min-height: clamp(380px, 58vh, 560px);
+  display: grid; place-items: center; text-align: center;
+  padding: 140px 24px 96px;            /* espacio para el menú arriba y el indicador abajo */
+  background: var(--ocean);
+}
+.page-hero__img { object-position: center 60%; }
+.page-hero::after {                    /* capa para contraste del título */
+  background: linear-gradient(rgba(0, 20, 40, .45) 0%, rgba(0, 30, 55, .30) 35%, rgba(0, 30, 55, .55) 100%);
+}
+.page-hero h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(40px, 6.5vw, 76px); line-height: 1.05; letter-spacing: -.01em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
+}
+.page-hero__content { max-width: 760px; }
+
+
+
+/* ---------- 6.2 About (usa el estilo editorial de 6.5) ---------- */
+.bl-intro__text .bl-intro__statement { font-size: clamp(26px, 2.8vw, 36px); line-height: 1.3; }
+
+.about-who__inner { max-width: 760px; margin: 0 auto; padding-top: clamp(40px, 6vw, 72px); }
+.about-who .closing { margin-top: 32px; }
+
+.pillars__title { margin-top: 44px; font-size: clamp(20px, 2vw, 24px); line-height: 1.35; }
+.pillars { list-style: none; margin-top: 20px; display: grid; gap: 12px; }
+@media (min-width: 640px) { .pillars { grid-template-columns: 1fr 1fr; } }
+.pillars li {
+  position: relative; padding: 16px 18px 16px 52px;
+  background: #fff; border: 1px solid rgba(0, 63, 110, .12); border-radius: 10px;
+  font-size: 16px; line-height: 1.5; font-weight: 600; color: var(--charcoal);
+}
+.pillars li::before {                  /* viñeta: círculo azul con check */
+  content: ""; position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--ocean) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+
+/* ---------- 6.3 Meet Our Pastor (usa .bl-intro del estilo editorial) ---------- */
+.bl-intro__media.bl-intro__media--portrait { max-width: 440px; }
+.bl-intro__media.bl-intro__media--portrait img { aspect-ratio: 4 / 5; object-position: 50% 35%; }
+@media (max-width: 899px) { .bl-intro__media.bl-intro__media--portrait { max-width: 340px; } }
+
+
+/* ---------- 6.4 Contact (usa .bl-intro del estilo editorial) ---------- */
+.bl-intro__media.bl-intro__media--square { max-width: 480px; }
+.bl-intro__media.bl-intro__media--square img { aspect-ratio: 1 / 1; }
+@media (max-width: 899px) { .bl-intro__media.bl-intro__media--square { max-width: 360px; } }
+
+.contact-list { list-style: none; margin-top: 32px; display: grid; gap: 24px; }
+.contact-list li { display: flex; gap: 18px; align-items: flex-start; }
+.contact-list__icon, .sabbath__icon {
+  flex: none; width: 48px; height: 48px; border-radius: 50%;
   display: grid; place-items: center;
-  border: 1.5px dashed #c5cdd9; color: #7a8599; font-size: 13px;
+  background: var(--sea); color: var(--ocean);
 }
-.ministry h3 { font-size: 22px; font-weight: 700; margin-top: 18px; line-height: 1.2; }
-.ministry p { font-size: 15px; line-height: 1.65; margin-top: 10px; max-width: 300px; margin-left: auto; margin-right: auto; }
+.contact-list h3 { padding-top: 2px; }   /* estilo de etiqueta en 4.4 */
+.contact-list p { margin-top: 6px; font-size: 18px; line-height: 1.6; color: var(--charcoal); }
+.contact-list a {
+  color: inherit;
+  text-decoration: underline; text-decoration-color: rgba(0, 63, 110, .35); text-underline-offset: 3px;
+}
+.contact-list a:hover { color: var(--ocean); text-decoration-color: currentColor; }
 
-/* E-newsletter */
-.newsletter {
-  position: relative; overflow: hidden; isolation: isolate;   /* contenedor del parallax */
-  padding: 96px 16px 104px;
-  background: #0f3a66;                                        /* color mientras carga la imagen */
-}
-/* capa suave sobre la foto para que la tarjeta resalte */
-.newsletter::after {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: rgba(10, 40, 75, .25);
-}
-.newsletter__card {
-  position: relative; max-width: 900px; margin: 0 auto; text-align: center;
-  background: #fff;
-  border: 1px solid var(--line); border-radius: 14px;
-  box-shadow: 0 18px 48px rgba(10, 30, 60, .28);
-  padding: 64px 24px 44px;
-}
-.newsletter__icon {
-  position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%);
-  width: 76px; height: 76px; border-radius: 50%; background: #fff;
-  border: 1px solid var(--line); display: grid; place-items: center; color: #4a4f57;
-}
-.newsletter h2 { font-size: clamp(20px, 2.2vw, 26px); font-weight: 400; color: #000; text-transform: uppercase; }
-.newsletter p { margin-top: 14px; color: var(--muted); font-weight: 700; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; }
-.newsletter a { color: inherit; }
+.contact-map { line-height: 0; }
+.contact-map iframe { display: block; width: 100%; height: clamp(320px, 45vh, 460px); border: 0; filter: saturate(.9); }
 
-/* Footer */
-.footer {
-  background: linear-gradient(120deg, #4877fc 0%, #4276fc 55%, #3a80fd 100%);
-  color: #fff; font-size: 14px; line-height: 1.8;
-  padding: 56px 24px 64px;
-}
-.footer__bottom a.remove-decoration:hover{ text-decoration: none;}
-.footer__inner { max-width: 1040px; margin: 0 auto; }
-.footer__cols { display: grid; gap: 28px; grid-template-columns: 1fr; padding: 0 16px; }
-@media (min-width: 700px) { .footer__cols { grid-template-columns: 1fr 1.7fr 1.9fr; } }
-.footer ul { list-style: none; }
-.footer a { color: #fff; }
-.footer a:hover { text-decoration: underline; }
-.footer__label { font-weight: 600; }
-.footer__contact p + p { margin-top: 18px; }
-.footer__bottom { border-top: 1px solid rgba(255,255,255,.45); margin-top: 36px; padding-top: 20px; }
-.footer__copy { display: flex; align-items: center; gap: 10px; }
-.footer__mark { width: 21px; height: 24px; overflow: hidden; flex: none; }
-.footer__mark img { height: 24px; width: auto; max-width: none; display: block; }
-.footer__made { font-size: 12px; margin-top: 6px; }
-.site :focus-visible, .footer :focus-visible { outline-color: currentColor; }
 
-/* ---------- Utilidades (antes eran estilos en línea en el HTML) ---------- */
+/* ---------- 6.4b Calendar: introducción, tarjetas de cada sábado, calendario centrado e invitación (.bl-cta) ---------- */
+/* Introducción y tarjetas "cada sábado" */
+.cal-intro { padding: clamp(72px, 9vw, 120px) 24px clamp(56px, 7vw, 96px); }
+.cal-intro__head { max-width: 720px; margin: 0 auto; text-align: center; }
+.cal-intro__head h2 { margin-top: 14px; }
+.sabbath {
+  list-style: none; max-width: 1040px; margin: clamp(40px, 5vw, 56px) auto 0;
+  display: grid; gap: 20px; grid-template-columns: 1fr;
+}
+@media (min-width: 760px) { .sabbath { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.sabbath__card {
+  padding: 32px 24px; text-align: center;
+  background: #fff; border: 1px solid rgba(0, 63, 110, .12); border-radius: var(--radius-card);
+  box-shadow: 0 10px 30px rgba(0, 63, 110, .06);
+}
+.sabbath__icon { margin: 0 auto 18px; }
+.sabbath__card h3 { font-size: clamp(22px, 2vw, 24px); line-height: 1.25; }
+.sabbath__time { margin-top: 6px; font-family: var(--serif); font-size: clamp(30px, 3vw, 36px); font-weight: 600; line-height: 1.2; color: var(--koa); }
+.sabbath__card p:not(.sabbath__time) { margin-top: 8px; font-size: 16px; line-height: 1.6; }
+.sabbath__card .sabbath__place { margin-top: 12px; font-size: 18px; }
+
+/* Calendario sobre franja verde-océano */
+.calendar { background: var(--sea); padding: clamp(48px, 7vw, 96px) clamp(12px, 3vw, 24px); }
+.calendar__frame {
+  max-width: 1040px; margin: 0 auto;
+  padding: clamp(6px, 1.2vw, 14px);
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-card);
+  box-shadow: 0 18px 48px rgba(10, 30, 60, .12);
+}
+.calendar__embed { display: block; width: 100%; height: clamp(520px, 72vh, 760px); border: 0; border-radius: 8px; }
+
+
+/* =====================================================================
+   6.5 ESTILO EDITORIAL (our-beliefs, about, meet-our-pastor y contact) — body.page-editorial
+   Tipografía: Noto Serif (títulos) + Noto Sans (texto)
+   ===================================================================== */
+:where(.page-editorial) :is(h2, h3) { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; color: var(--ocean); }
+
+/* Títulos de sección (home y páginas editoriales): un solo tamaño */
+.block h2, .about-who__inner h2, .bl-intro__text h2, .bl-core__head h2, .bl-28 h2, .bl-cta h2, .cal-intro__head h2 {
+  font-size: clamp(32px, 3.6vw, 46px); line-height: 1.15;
+}
+
+/* Párrafos de lectura: un solo tamaño e interlineado en todo el sitio */
+.bl-intro__text > p:not(.eyebrow), .bl-core__head > p, .about-who__inner > p,
+.belief__body > p:not(.belief__num), .block__inner > p, .parallax__box p,
+.bl-28__text > p:not(.eyebrow), .bl-living__card > p:not(.eyebrow), .bl-cta > p,
+.cal-intro__head > p:not(.eyebrow) {
+  font-size: var(--text-size); line-height: var(--text-leading);
+}
+.bl-intro__text > p:not(.eyebrow), .bl-core__head > p, .about-who__inner > p,
+.belief__body > p:not(.belief__num), .cal-intro__head > p:not(.eyebrow) { margin-top: 18px; }
+
+/* Rejillas de dos columnas (se apilan en móvil) */
+.bl-intro__grid, .belief--creation, .belief--church, .belief--salvation__inner, .belief--hope__panel {
+  max-width: var(--wrap); margin: 0 auto;
+  display: grid; align-items: center; grid-template-columns: 1fr;
+}
+
+/* Fotos dentro del contenido */
+.bl-intro__media img, .belief--creation .belief__media img, .belief__collage img {
+  display: block; width: 100%; height: auto; object-fit: cover;
+}
+
+
+/* Versículo */
+.bl-verse {
+  margin-top: 28px; padding-left: 20px;
+  border-left: 2px solid var(--koa);
+}
+.bl-verse p { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.6; color: var(--charcoal); }
+.bl-verse cite { display: block; margin-top: 8px; font-style: normal; }   /* estilo de etiqueta en 4.4 */
+.bl-verse--light { border-left-color: var(--koa-light); }
+.bl-verse--light p { color: var(--on-dark); }
+
+/* ---------- 2. Introducción ---------- */
+.bl-intro { padding: clamp(72px, 9vw, 128px) 24px clamp(64px, 8vw, 112px); }
+.bl-intro__grid { gap: clamp(36px, 6vw, 88px); }
+@media (min-width: 900px) { .bl-intro__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+.bl-intro__media {
+  --shape: 120px 18px 120px 18px;         /* forma de hoja */
+  margin: 0; position: relative; isolation: isolate; max-width: 560px; justify-self: center; width: 100%;
+}
+.bl-intro__media img { aspect-ratio: 643 / 360; }
+/* Foto con forma + la misma forma en verde-océano desplazada detrás */
+.bl-intro__media img, .belief--creation .belief__media img { border-radius: var(--shape); }
+.bl-intro__media::before, .belief--creation .belief__media::before {
+  content: ""; position: absolute; inset: 18px -18px -18px 18px; z-index: -1;
+  background: var(--sea); border-radius: var(--shape);
+}
+.bl-intro__text { max-width: var(--measure); }
+.bl-intro__text h2 { margin-top: 14px; }
+.bl-intro__text > h2 + p:not(.eyebrow) { margin-top: 24px; }
+/* Tablets y móviles (iPad Air/Mini, iPhone, Galaxy…): foto arriba y texto centrado */
+@media (max-width: 899px) {
+  .bl-intro__text { justify-self: center; margin-inline: auto; text-align: center; }
+  .bl-intro__text .contact-list { width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
+}
+
+/* ---------- 3. Introducción a las creencias + 01 ---------- */
+.bl-core { position: relative; background: var(--sea); padding: 0 24px clamp(72px, 9vw, 120px); }
+.bl-core__wave { display: block; width: calc(100% + 48px); height: 56px; margin: -55px -24px 0; fill: var(--sea); }
+.bl-core__head { max-width: 720px; margin: 0 auto; padding-top: clamp(40px, 6vw, 72px); text-align: center; }
+.bl-core__head h2 { margin-top: 18px; }
+
+.bl-toc ol {
+  list-style: none; margin-top: 32px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px;
+}
+.bl-toc a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid rgba(0, 63, 110, .22); background: rgba(255,255,255,.6);
+  color: var(--ocean); font-size: 14px; font-weight: 600;
+  transition: background .2s, border-color .2s;
+}
+.bl-toc a span { color: var(--koa); font-family: var(--serif); }
+.bl-toc a:hover { background: #fff; border-color: var(--ocean); }
+
+/* ---------- 4. Creencias (estructura común) ---------- */
+.belief { padding: clamp(64px, 8vw, 120px) 24px; }
+.belief__body { max-width: var(--measure); }
+.belief__num {
+  display: flex; align-items: center; gap: 14px;
+  color: var(--koa); font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: .04em;
+}
+.belief__num::after, .belief--word .belief__num::before { width: 48px; height: 1px; background: currentColor; opacity: .55; }
+.belief__num::after { content: ""; }
+.belief h3 { margin-top: 14px; font-size: clamp(28px, 3vw, 40px); line-height: 1.15; }
+.belief__art { color: var(--ocean); }
+
+/* 01 · Palabra: icono de línea + texto, dentro de la franja verde-océano */
+.belief--word {
+  max-width: 980px; margin: clamp(48px, 6vw, 80px) auto 0; padding: 0;
+  display: grid; gap: 32px; align-items: start;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .belief--word { grid-template-columns: 200px minmax(0, 1fr); gap: 56px; }
+  .belief--word .belief__body { padding-left: 56px; border-left: 1px solid rgba(0, 63, 110, .18); }
+}
+.belief--word .belief__art {
+  width: 148px; height: 148px; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; box-shadow: 0 10px 30px rgba(0, 63, 110, .08);
+}
+.belief--word .belief__art svg { width: 92px; height: 92px; }
+/* Móvil: icono arriba, centrado, y el texto centrado debajo */
+@media (max-width: 759px) {
+  .belief--word { justify-items: center; text-align: center; }
+  .belief--word .belief__num { justify-content: center; }
+  .belief--word .belief__num::before { content: ""; }   /* línea también a la izquierda */
+  .belief--word .bl-verse { position: relative; border-left: 0; padding: 22px 0 0; }
+  .belief--word .bl-verse::before {      /* línea corta arriba en lugar de la barra lateral */
+    content: ""; position: absolute; top: 0; left: 50%; translate: -50% 0;
+    width: 40px; height: 2px; background: var(--koa);
+  }
+}
+
+/* 02 · Creación: texto + foto, asimétrico */
+.belief--creation { gap: clamp(36px, 6vw, 80px); }
+@media (min-width: 900px) { .belief--creation { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); } }
+.belief__media { margin: 0; position: relative; isolation: isolate; }
+.belief--creation .belief__media { --shape: 18px 120px 18px 18px; }
+.belief--creation .belief__media img { aspect-ratio: 3 / 2; }
+
+/* 03 · Jesús y la salvación: franja oscura a sangre con la luz del atardecer */
+.belief--salvation {
+  padding: clamp(88px, 11vw, 160px) 24px;
+  background: var(--deep); color: #fff;
+}
+.belief--salvation__bg { object-position: center 40%; }
+.belief--salvation::before {           /* capa para que el texto se lea */
+  background: linear-gradient(90deg, rgba(10, 34, 51, .92) 0%, rgba(10, 34, 51, .78) 45%, rgba(10, 34, 51, .25) 100%);
+}
+@media (min-width: 900px) { .belief--salvation__inner { grid-template-columns: minmax(0, 1fr) 220px; } }
+.belief--salvation .belief__body { max-width: 640px; }
+.belief--salvation .belief__num { color: var(--koa-light); flex-wrap: wrap; }
+.belief__tag { order: 3; color: rgba(255,255,255,.85); }   /* estilo de etiqueta en 4.4 */
+.belief--salvation h3 { color: #fff; font-size: clamp(36px, 4.6vw, 58px); line-height: 1.08; }
+.belief--salvation .belief__body > p:not(.belief__num) { color: var(--on-dark); }
+.belief--salvation__cross {
+  display: none; width: 100px; height: 160px; justify-self: center;
+  color: rgba(255, 236, 214, .75);
+  filter: drop-shadow(0 0 18px rgba(255, 210, 160, .55));
+}
+@media (min-width: 900px) { .belief--salvation__cross { display: block; } }
+
+/* 04 · La iglesia: collage de la comunidad + texto */
+.belief--church { gap: clamp(40px, 6vw, 88px); }
+@media (min-width: 900px) { .belief--church { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.belief__collage {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  max-width: 560px; width: 100%; justify-self: center;
+}
+.belief__collage img {
+  aspect-ratio: 3 / 2;
+  border-radius: 14px; box-shadow: 0 12px 28px rgba(0, 30, 55, .14);
+}
+.belief__collage img:nth-child(2) { margin-top: 48px; }
+.belief__collage img:nth-child(3) { grid-column: 1 / -1; width: 78%; justify-self: end; margin-top: -32px; }
+
+/* 05 · Esperanza: panel de amanecer con dibujo de línea */
+.belief--hope { padding-top: 0; }
+.belief--hope__panel {
+  gap: 32px;
+  padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 88px);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fbefe2 0%, #f7f2ea 55%, #eef4f3 100%);   /* cielo al amanecer */
+}
+@media (min-width: 900px) { .belief--hope__panel { grid-template-columns: minmax(0, 1fr) 300px; } }
+.belief__art--sunrise { color: var(--koa); justify-self: center; width: 100%; max-width: 300px; }
+.belief__art--sunrise svg { display: block; width: 100%; height: auto; }
+@media (max-width: 899px) { .belief__art--sunrise { order: -1; max-width: 220px; } }
+
+/* ---------- 5. 28 Creencias Fundamentales ---------- */
+.bl-28 { background: var(--ocean); color: #fff; padding: clamp(72px, 9vw, 120px) 24px; }
+.bl-28__inner {
+  max-width: 980px; margin: 0 auto;
+  display: grid; gap: 24px 64px; align-items: center; grid-template-columns: 1fr;
+}
+@media (min-width: 800px) { .bl-28__inner { grid-template-columns: auto minmax(0, 1fr); } }
+.bl-28__number {
+  font-family: var(--serif); font-weight: 700; line-height: .85;
+  font-size: clamp(110px, 16vw, 220px);
+  color: transparent; -webkit-text-stroke: 1.5px rgba(243, 211, 176, .75);
+}
+.bl-28 h2 { margin-top: 12px; color: #fff; }
+.bl-28__text > p:not(.eyebrow) { margin-top: 16px; max-width: 54ch; color: var(--on-dark); }
+.bl-28 .btn { margin-top: 28px; }
+
+/* ---------- 6. Living Our Faith ---------- */
+.bl-living {
+  min-height: clamp(560px, 80vh, 760px);
+  display: flex; align-items: flex-end;
+  padding: clamp(48px, 8vw, 96px) 24px;
+}
+.bl-living__bg { object-position: center 45%; }
+.bl-living::before {
+  background: linear-gradient(0deg, rgba(4, 28, 44, .88) 0%, rgba(4, 28, 44, .55) 45%, rgba(4, 28, 44, .05) 80%);
+}
+.bl-living__card { width: 100%; max-width: var(--wrap); margin: 0 auto; color: #fff; }
+.bl-living__card > * { max-width: 620px; }
+.bl-living h2 { margin-top: 12px; color: #fff; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; }
+.bl-living__card > p:not(.eyebrow) { margin-top: 18px; color: var(--on-dark); }
+.bl-living__list {
+  list-style: none; margin-top: 18px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.bl-living__list li {
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.55);
+  font-size: 14px; font-weight: 600; letter-spacing: .04em;
+}
+.bl-living .btn { margin-top: 28px; }
+
+/* ---------- 7. CTA final ---------- */
+.bl-cta { text-align: center; padding: clamp(80px, 10vw, 136px) 24px; }
+.bl-cta h2 { margin-top: 18px; }
+.bl-cta > p { margin: 16px auto 0; max-width: 46ch; }
+.bl-cta .bl-cta__times { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.bl-cta__times span { white-space: nowrap; }
+.bl-cta__actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.bl-cta__actions .btn { min-width: 200px; }
+
+/* ---------- Ajustes móviles ---------- */
+@media (max-width: 599px) {
+  .bl-intro__media::before,
+  .belief--creation .belief__media::before { inset: 12px -10px -12px 10px; }
+  .belief__collage img:nth-child(2) { margin-top: 28px; }
+  .bl-cta__actions .btn, .bl-28 .btn, .bl-living .btn { width: 100%; }
+  .btn--lg { white-space: normal; text-align: center; height: auto; min-height: 52px; padding: 12px 20px; }
+  .belief--word .belief__art { width: 112px; height: 112px; }
+  .belief--word .belief__art svg { width: 70px; height: 70px; }
+}
+
+
+/* =====================================================================
+   7. UTILIDADES
+   ===================================================================== */
 .nowrap-text { white-space: nowrap; }
-.footer__made a { text-decoration: none; }
+/* Oculta visualmente pero sigue disponible para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+
+/* =====================================================================
+   8. MOVIMIENTO REDUCIDO (todo junto, al final para que tenga prioridad)
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll { height: auto; }
+  .hero-scroll .hero { position: relative; }
+  .reveal { animation: none; opacity: 1; transform: none; }
+  .nav.nav--stuck { animation: none; }
+  .nav__links a:hover,
+  .nav__links a:focus-visible { transform: none; }
+  .menu, .btn, .submenu, .nav__caret, .menu__caret { transition: none; }
+  .scroll-cue svg { animation: none; }
+  .newsletter__icon { transition: none; }
+  .newsletter__icon:hover { scale: none; }
+  .newsletter__icon:hover .newsletter__phone { animation: none; }
+  .newsletter__icon:hover .newsletter__wave { animation: none; opacity: 1; }   /* ondas fijas, sin movimiento */
+  html { scroll-behavior: auto; }
+}
