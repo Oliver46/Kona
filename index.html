@@ -46,15 +46,19 @@
 <body>
 
 <div class="hero-scroll" id="hero-scroll">
-<section class="hero" id="hero">
+<section class="hero" id="hero" aria-label="Welcome">
   <!-- Escritorio: secuencia de imágenes con el scroll · Móvil y tableta: video en bucle (lo elige el JS) -->
   <canvas class="hero__bg hero__canvas" aria-hidden="true"></canvas>
   <video class="hero__bg hero__video" aria-hidden="true" muted loop playsinline preload="none"
          data-portrait="img/hero/hero-portrait.mp4" data-landscape="img/hero/hero-landscape.mp4"></video>
   <div class="hero__overlay"></div>
+  <button class="hero__pause" type="button" aria-label="Pause background video" hidden>
+    <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z"/></svg>
+  </button>
   <p class="hero__missing">Archivo pendiente: img/hero/</p>
 
-  <header class="nav">
+  <nav class="nav" aria-label="Main">
     <a href="index.html" class="brand" aria-current="page"><img src="img/NAD_logo.webp" alt="Kona Seventh-day Adventist Church — Home" width="1500" height="445"></a>
     <ul class="nav__links">
       <li><a href="index.html" aria-current="page">HOME</a></li>
@@ -66,14 +70,14 @@
         </ul>
       </li>
       <li><a href="our-beliefs.html">OUR BELIEF</a></li>
-      <li><a href="calendar.html">CALENDAR</a></li>
+      <li><a href="events.html">CALENDAR</a></li>
       <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
     </ul>
     <a href="contact.html" class="btn btn--light btn--sm nav__cta">CONTACT US</a>
     <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
     </button>
-  </header>
+  </nav>
 
   <div class="hero__content">
     <h1 class="reveal"><span class="line">Welcome to the</span> <span class="nowrap">Kona Seventh-day</span> Adventist Church</h1>
@@ -205,7 +209,7 @@
           <li><a href="about-us.html">About Us</a></li>
           <li><a href="meet-our-pastor.html">Meet Our Pastor</a></li>
           <li><a href="our-beliefs.html">Our Beliefs</a></li>
-          <li><a href="calendar.html">Calendar</a></li>
+          <li><a href="events.html">Calendar</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
@@ -259,7 +263,7 @@
       </ul>
     </li>
     <li><a href="our-beliefs.html">OUR BELIEF</a></li>
-    <li><a href="calendar.html">CALENDAR</a></li>
+    <li><a href="events.html">CALENDAR</a></li>
     <li><a href="https://adventistgiving.org/donate" target="_blank" rel="noopener">ADVENTIST GIVING</a></li>
   </ul>
   <a href="contact.html" class="btn btn--light">Contact Us</a>

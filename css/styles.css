@@ -152,7 +152,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 }
 .btn--light, .btn--glass:hover { background: var(--white); color: #111; }   /* el de cristal se rellena como BULLETIN */
 .btn--glass {
-  background: var(--glass); color: var(--white);
+  background: rgba(0, 14, 28, .35); color: var(--white);   /* cristal oscuro: texto blanco legible sobre la foto */
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
@@ -234,6 +234,17 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .nav__links .submenu a:focus-visible { background: rgba(255, 255, 255, .1); color: #fff; transform: none; }
 .nav__links .submenu a[aria-current="page"] { color: #fff; font-weight: 600; }
 
+/* Página actual: enlace en blanco con una barra debajo (aria-current lo marcan los HTML) */
+.nav__links > li > a[aria-current="page"],
+.nav__links > .has-sub:has([aria-current="page"]) > a { position: relative; color: var(--white); }
+.nav__links > li > a[aria-current="page"]::after,
+.nav__links > .has-sub:has([aria-current="page"]) > a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -8px;
+  height: 2px; border-radius: 2px; background: currentColor;
+}
+.nav__links > .has-sub:has([aria-current="page"]) > a::after { right: 16px; }   /* sin subrayar la flecha */
+.nav .nav__cta[aria-current="page"] { box-shadow: 0 0 0 2px rgba(0, 14, 28, .4), 0 0 0 4px var(--white); }
+
 /* Menú fijo en escritorio (lo activa el JS al hacer scroll) */
 @media (min-width: 900px) {
   .hero-scroll.has-stuck-nav { z-index: 30; }
@@ -288,6 +299,13 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   color: var(--on-dark-muted);
 }
 .menu__links .menu__sub a[aria-current="page"] { color: #fff; font-weight: 500; }
+/* Página actual en el menú móvil: subrayado */
+.menu__links > li > a[aria-current="page"],
+.menu__links .menu__sub a[aria-current="page"] {
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px;
+}
+.menu__links .menu__sub a[aria-current="page"] { text-underline-offset: 5px; }
+.menu .btn[aria-current="page"] { box-shadow: 0 0 0 2px rgba(0, 0, 0, .5), 0 0 0 4px var(--white); }
 
 
 /* ---------- Indicador "Scroll to explore" (abajo del hero en todas las páginas) ---------- */
@@ -299,7 +317,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   white-space: nowrap;
 }
 .scroll-cue:hover { color: #fff; }
-.scroll-cue svg { animation: cue-float 2.4s ease-in-out infinite; }
+.scroll-cue svg { animation: cue-float 2.4s ease-in-out 2; }   /* 2 rebotes (< 5 s) y se detiene */
 @keyframes cue-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 
 /* ---------- 4.4 Títulos y etiquetas ---------- */
@@ -345,6 +363,11 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 /* Capa de color entre la foto y el texto (cada sección define su "background") */
 .newsletter::after, .page-hero::after, .belief--salvation::before, .bl-living::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
+}
+/* Franja oscura arriba de las fotos del hero y de los banners: el menú blanco se lee sobre el agua */
+.hero::before, .page-hero::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 200px; z-index: -1; pointer-events: none;
+  background: linear-gradient(rgba(0, 14, 28, .55), rgba(0, 14, 28, 0));
 }
 /* Foco blanco en las secciones oscuras dentro del contenido */
 .bl-28 :focus-visible, .bl-living :focus-visible { outline-color: #fff; }
@@ -424,6 +447,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .newsletter h2 { font-family: var(--font-sans); letter-spacing: normal; font-size: clamp(20px, 2.2vw, 26px); font-weight: 400; color: #000; text-transform: uppercase; }
 .newsletter p { margin-top: 14px; color: var(--muted); font-weight: 700; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; }
 .newsletter a { color: inherit; }
+/* Enlaces dentro de un texto: subrayados para distinguirlos sin depender del color */
+.newsletter p a, .footer__note a { text-decoration: underline; text-underline-offset: 3px; }
 .news-letter-keyword { font-weight: 900; color: var(--ocean); }
 
 
@@ -504,13 +529,29 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   .hero__canvas { display: block; background-image: url("../img/hero/desktop/frame_001.webp"); }
   .hero__video { display: none; }
 }
-.hero__overlay { position: absolute; inset: 0; z-index: -1; background: rgba(0,0,0,.2); }
+.hero__overlay {                       /* sombra para que el texto blanco se lea sobre la foto (contraste WCAG AA) */
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 14, 28, .62) 0%, rgba(0, 14, 28, .42) 24%, rgba(0, 14, 28, .46) 52%, rgba(0, 14, 28, .52) 80%, rgba(0, 14, 28, .68) 100%);
+}
 .hero__missing {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
   z-index: -1; display: none;
   font-size: 13px; color: var(--white-75);
   border: 1px dashed var(--glass-border); border-radius: 12px; padding: 10px 14px;
 }
+/* Botón para pausar el video del hero (móvil y tableta) */
+.hero__pause {
+  position: absolute; right: var(--gutter); bottom: 28px; z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  color: #fff; background: rgba(0, 14, 28, .45);
+  border: 1px solid rgba(255, 255, 255, .7);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.hero__pause[hidden] { display: none; }
+.hero__pause .icon-play, .hero__pause.is-paused .icon-pause { display: none; }
+.hero__pause.is-paused .icon-play { display: block; }
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) { .hero__pause { display: none; } }
 .hero.is-missing .hero__missing { display: block; top: auto; bottom: 72px; transform: translateX(-50%); }
 
 .hero__content {
@@ -523,7 +564,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   font-size: clamp(32px, 10.2vw, 40px); line-height: 1.02;
   text-wrap: balance; overflow-wrap: break-word;
   max-width: 1024px;
-  text-shadow: 0 0 32px rgba(255,255,255,.35), 0 0 80px rgba(255,255,255,.18);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .35);   /* sombra oscura: mejora la lectura sobre la foto */
 }
 .hero h1 .line { display: block; }
 .hero h1 .nowrap { white-space: nowrap; }
@@ -595,8 +636,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   background: var(--ocean);
 }
 .page-hero__img { object-position: center 60%; }
-.page-hero::after {                    /* capa para contraste del título */
-  background: linear-gradient(rgba(0, 20, 40, .45) 0%, rgba(0, 30, 55, .30) 35%, rgba(0, 30, 55, .55) 100%);
+.page-hero::after {                    /* capa para contraste del menú, el título y "Scroll to explore" */
+  background: linear-gradient(rgba(0, 20, 40, .66) 0%, rgba(0, 30, 55, .40) 35%, rgba(0, 30, 55, .40) 60%, rgba(0, 30, 55, .64) 100%);
 }
 .page-hero h1 {                        /* tipo de título en 6.5 */
   font-size: clamp(40px, 6.5vw, 76px); line-height: 1.05;

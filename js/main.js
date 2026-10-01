@@ -5,9 +5,9 @@
      1. Menú móvil y submenú "About Us"          (todas)
      2. Hero: secuencia (escritorio) o video     (index)
      3. Menú fijo en escritorio — home           (index)
-     4. Menú fijo en escritorio — interiores     (about, our-beliefs, meet-our-pastor, contact, calendar)
+     4. Menú fijo en escritorio — interiores     (about-us, our-beliefs, meet-our-pastor, contact, events)
      5. Parallax de imágenes de fondo            (index, contact)
-     6. Calendario: vista de mes o de agenda     (calendar)
+     6. Calendario: vista de mes o de agenda     (events)
    ===================================================================== */
 
 // ---------- Utilidades compartidas ----------
@@ -54,13 +54,26 @@ function stickyNav(nav, shouldStick, onChange) {
   if (!menu) return;
   const openBtn = document.querySelector('.nav .nav__toggle');
   const closeBtn = menu.querySelector('[data-close]');
+  // Con el menú abierto, el resto de la página queda inactivo (inert): el teclado no puede salir del menú
+  const setPageInert = (on) => {
+    [...document.body.children].forEach(el => { if (el !== menu && el.tagName !== 'SCRIPT') el.inert = on; });
+  };
   const setMenu = (open) => {
     menu.classList.toggle('is-open', open);
     menu.setAttribute('aria-hidden', String(!open));
     openBtn.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
+    setPageInert(open);
     (open ? closeBtn : openBtn).focus();
   };
+  // Respaldo para navegadores sin "inert": Tab y Shift+Tab dan la vuelta dentro del menú
+  menu.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !menu.classList.contains('is-open')) return;
+    const items = [...menu.querySelectorAll('a, button')].filter(el => el.offsetParent !== null);
+    const first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   openBtn.addEventListener('click', () => setMenu(true));
   closeBtn.addEventListener('click', () => setMenu(false));
   menu.querySelectorAll('a:not([data-submenu-toggle])').forEach(a => a.addEventListener('click', () => setMenu(false)));
@@ -71,6 +84,13 @@ function stickyNav(nav, shouldStick, onChange) {
     const open = t.parentElement.classList.toggle('is-open');
     t.setAttribute('aria-expanded', String(open));
   }));
+  // Si la página actual está dentro del submenú (Who We Are / Meet Our Pastor), mostrarlo ya abierto
+  menu.querySelectorAll('[data-submenu-toggle]').forEach(t => {
+    if (t.parentElement.querySelector('[aria-current="page"]')) {
+      t.parentElement.classList.add('is-open');
+      t.setAttribute('aria-expanded', 'true');
+    }
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
 })();
 
@@ -82,12 +102,32 @@ function stickyNav(nav, shouldStick, onChange) {
   const portrait = matchMedia('(orientation: portrait)');
   const setSource = () => {
     video.src = portrait.matches ? video.dataset.portrait : video.dataset.landscape;
-    video.play().catch(() => {});                       // si el navegador bloquea el autoplay, queda el póster
+    if (!userPaused) video.play().catch(() => {});      // si el navegador bloquea el autoplay, queda el póster
   };
+  // Botón de pausa (requisito de accesibilidad para movimiento que dura más de 5 segundos)
+  const btn = document.querySelector('.hero__pause');
+  let userPaused = false;
+  const updateBtn = () => {
+    btn.classList.toggle('is-paused', video.paused);
+    btn.setAttribute('aria-label', video.paused ? 'Play background video' : 'Pause background video');
+  };
+  if (btn) {
+    btn.hidden = false;
+    btn.addEventListener('click', () => {
+      userPaused = !video.paused;
+      userPaused ? video.pause() : video.play().catch(() => {});
+    });
+    video.addEventListener('play', updateBtn);
+    video.addEventListener('pause', updateBtn);
+    updateBtn();
+  }
   setSource();
   portrait.addEventListener('change', setSource);
-  new IntersectionObserver(([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause(); })
-    .observe(video);
+  // Fuera de la vista se pausa; al volver solo se reanuda si el usuario no lo pausó
+  new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) video.pause();
+    else if (!userPaused) video.play().catch(() => {});
+  }).observe(video);
 })();
 
 // Escritorio: secuencia de 60 imágenes controlada por el scroll.
@@ -230,7 +270,7 @@ function stickyNav(nav, shouldStick, onChange) {
   items.forEach(i => io.observe(i.el));
 })();
 
-// ---------- Calendario: vista de mes en pantallas grandes, de agenda en móvil (calendar.html) ----------
+// ---------- Calendario: vista de mes en pantallas grandes, de agenda en móvil (events.html) ----------
 // El src se pone aquí para que el calendario se cargue una sola vez, ya con la vista correcta.
 (() => {
   const cal = document.querySelector('.calendar__embed[data-src]');
