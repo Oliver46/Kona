@@ -340,8 +340,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
   background: var(--sea); color: var(--ocean);
 }
 
-/* Adorno: línea fina con un punto en el centro (también bajo los títulos del home) */
-.bl-ornament, .block h2::after {
+/* Adorno: línea fina con un punto en el centro (también sobre los títulos del home) */
+.bl-ornament, .block h2::before {
   display: inline-block; width: 104px; height: 8px; opacity: .85;
   background:
     radial-gradient(circle, var(--koa) 3px, transparent 3.5px) center / 8px 8px no-repeat,
@@ -598,7 +598,7 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .block--sea { background: var(--sea); }
 .block__inner { max-width: 720px; margin: 0 auto; }
 .block h2 { display: inline-flex; flex-direction: column; align-items: center; gap: 18px; }
-.block h2::after { content: ""; }      /* adorno .bl-ornament (4.4) */
+.block h2::before { content: ""; }     /* adorno .bl-ornament (4.4), encima del título como en las demás páginas */
 .block__inner > p { max-width: var(--measure); margin: 24px auto 0; }
 .block .btn { margin-top: 32px; }
 
@@ -653,6 +653,8 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 
 .about-who__inner { max-width: 760px; margin: 0 auto; padding-top: clamp(40px, 6vw, 72px); }
 .about-who .closing { margin-top: 32px; }
+.about-who__inner > .bl-ornament { display: block; margin-inline: auto; }   /* adorno y título centrados; párrafos alineados a la izquierda */
+.about-who__inner > .bl-ornament + h2 { margin-top: 18px; text-align: center; }   /* mismo espacio que en Our Beliefs */
 
 .pillars__title { margin-top: 44px; font-size: clamp(20px, 2vw, 24px); line-height: 1.35; }
 .pillars { list-style: none; margin-top: 20px; display: grid; gap: 12px; }
