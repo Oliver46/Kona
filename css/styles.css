@@ -496,6 +496,9 @@ main [id] { scroll-margin-top: 88px; }   /* que el menú fijo no tape el título
 .footer__made { font-size: 12px; margin-left: auto; }
 /* "Made by" + logo de Leon Oliver: abajo a la derecha; centrado abajo en móvil */
 .footer__credit { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--on-dark-muted); transition: opacity .2s ease; }
+.footer__credit { line-height: 1; }                       /* no inherited line-height: text and logo share one exact center line */
+.footer__credit-text { display: block; }
+.footer__credit picture { display: block; }
 .footer__credit img { display: block; width: 30px; height: auto; border-radius: 3px; }
 .footer__credit:hover { opacity: .8; }
 .footer__credit:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 4px; }
